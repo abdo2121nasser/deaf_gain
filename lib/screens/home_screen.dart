@@ -1,3 +1,5 @@
+import 'package:deaf_gain/core/blocks/home_screen_blocks/app_bar_block.dart';
+import 'package:deaf_gain/core/managers/string_%20manager.dart';
 import 'package:flutter/material.dart';
 
 
@@ -8,6 +10,14 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    final Ui ui = StringManager.ui;
+    final Logic logic = StringManager.logic;
+    return Scaffold(
+      appBar: AppBarBlock(),
+
+
+
+    );
   }
 }
+
