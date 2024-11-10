@@ -10,6 +10,7 @@ class StringManager{
 
 class Ui{
     String homeScreenAppbarTitle='باليدين';
+    String homeScreenDrawerContactItem='معلومات التواصل';
 }
 
 class Logic{

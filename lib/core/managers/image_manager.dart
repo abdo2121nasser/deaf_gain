@@ -1,3 +1,3 @@
 
-  const String kMaleImage='assets/images/male.png';
+  const String kAppImage='assets/images/welcome3.webp';
 
