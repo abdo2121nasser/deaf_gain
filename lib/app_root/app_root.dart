@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
+import '../screens/translate_screen.dart';
+
 class DeafGainApp extends StatelessWidget {
   const DeafGainApp({super.key});
 
@@ -18,7 +20,7 @@ class DeafGainApp extends StatelessWidget {
             builder: (context, child) => GetMaterialApp(
                   locale:const Locale('ar'),
                   debugShowCheckedModeBanner: false,
-                  home: HomeScreen(),
+                  home: TranslateScreen(),
                 )),
       ),
     );
