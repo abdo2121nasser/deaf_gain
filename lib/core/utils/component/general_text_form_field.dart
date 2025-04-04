@@ -107,16 +107,18 @@ class GeneralTextFormField extends StatelessWidget {
         suffixIcon: suffixIcon != null
             ? InkWell(
                 onTap: () {
-                  suffixIconFunction!();
-                },
+                  if (suffixIconFunction != null) {
+                    suffixIconFunction!(); // Call the function safely
+                  }                },
                 child: suffixIcon,
               )
             : null,
         prefixIcon: prefixIcon != null
             ? InkWell(
                 onTap: () {
-                  prefixIconFunction!();
-                },
+                  if (prefixIconFunction != null) {
+                    prefixIconFunction!(); // Call the function safely
+                  }                },
                 child: prefixIcon,
               )
             : null,
