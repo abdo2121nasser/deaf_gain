@@ -7,7 +7,7 @@ import '../values/font_size.dart';
 class GeneralButtonWidget extends StatelessWidget {
   final String label;
   final VoidCallback function;
-  final double? width, height;
+  final Size? size;
   final double borderRadius;
   final Color textColor, backgroundColor;
   final Icon? icon;
@@ -16,8 +16,7 @@ class GeneralButtonWidget extends StatelessWidget {
       {super.key,
       required this.label,
       required this.function,
-      this.width,
-      this.height,
+      this.size,
       required this.textColor,
       required this.backgroundColor,
       required this.borderRadius,
@@ -32,8 +31,7 @@ class GeneralButtonWidget extends StatelessWidget {
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(borderRadius)),
           backgroundColor: backgroundColor,
-          fixedSize:
-              width == null || height == null ? null : Size(width!, height!),
+          fixedSize: size,
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,

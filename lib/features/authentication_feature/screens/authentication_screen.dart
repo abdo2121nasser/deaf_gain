@@ -2,6 +2,7 @@ import 'package:deaf_gain/core/services/validator_service.dart';
 import 'package:deaf_gain/core/utils/colors/colors.dart';
 import 'package:deaf_gain/core/utils/component/custom_full_input_block.dart';
 import 'package:deaf_gain/core/utils/component/custom_title_widget.dart';
+import 'package:deaf_gain/core/utils/component/general_button_widget.dart';
 import 'package:deaf_gain/core/utils/values/app_size.dart';
 import 'package:deaf_gain/core/utils/values/font_size.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ import 'package:toggle_switch/toggle_switch.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../widgets/custom_switch_widget.dart';
+import '../widgets/sign_in_widgets/sign_in_button_widget.dart';
 
 class AuthenticationScreen extends StatelessWidget {
   const AuthenticationScreen({super.key});
@@ -21,11 +23,18 @@ class AuthenticationScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const CustomTitleWidget(title: "تسجيل الدخول"),
+            Text(
+              'تسجيل الدخول',
+              style: TextStyle(
+                  fontSize: k30Sp,
+                  fontWeight: FontWeight.bold,
+                  color: kDarkBlueColor),
+            ),
             CustomSwitchWidget(
               isSignIn: false,
             ),
-            Form(child: Column(
+            Form(
+                child: Column(
               children: [
                 CustomFullInputBlock(
                     label: 'البريد الاليكتروني',
@@ -33,7 +42,10 @@ class AuthenticationScreen extends StatelessWidget {
                     validator: ValidatorService.validateEmail,
                     color: kBlackColor,
                     enableBorder: true,
-                    prefixIcon: const Icon(CupertinoIcons.envelope,color: kDarkBlueColor,),
+                    prefixIcon: const Icon(
+                      CupertinoIcons.envelope,
+                      color: kDarkBlueColor,
+                    ),
                     controller: TextEditingController()),
                 CustomFullInputBlock(
                     label: 'كلمه المرور',
@@ -41,14 +53,29 @@ class AuthenticationScreen extends StatelessWidget {
                     validator: ValidatorService.validatePassword,
                     color: kBlackColor,
                     enableBorder: true,
-                    prefixIcon: const Icon(CupertinoIcons.lock,color: kDarkBlueColor,),
+                    prefixIcon: const Icon(
+                      CupertinoIcons.lock,
+                      color: kDarkBlueColor,
+                    ),
                     controller: TextEditingController()),
               ],
-            ))
-
+            )),
+            Align(
+              alignment: Alignment.centerRight,
+              child: Text(
+                'هل نسيت كلمه المرور؟',
+                style: TextStyle(
+                    decoration: TextDecoration.underline,
+                    fontSize: k16Sp,
+                    fontWeight: FontWeight.bold,
+                    color: kDarkBlueColor),
+              ),
+            ),
+            SignInButton()
           ],
         ),
       ),
     );
   }
 }
+
