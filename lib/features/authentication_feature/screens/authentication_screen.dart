@@ -1,19 +1,21 @@
-import 'package:deaf_gain/core/services/validator_service.dart';
 import 'package:deaf_gain/core/utils/colors/colors.dart';
-import 'package:deaf_gain/core/utils/component/custom_full_input_block.dart';
-import 'package:deaf_gain/core/utils/component/custom_title_widget.dart';
 import 'package:deaf_gain/core/utils/component/general_button_widget.dart';
 import 'package:deaf_gain/core/utils/values/app_size.dart';
 import 'package:deaf_gain/core/utils/values/font_size.dart';
+import 'package:deaf_gain/features/authentication_feature/models/sign_in_model.dart';
+import 'package:deaf_gain/features/authentication_feature/widgets/authentication_title_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:toggle_switch/toggle_switch.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../widgets/custom_switch_widget.dart';
 import '../widgets/sign_in_widgets/sign_in_button_widget.dart';
+import '../widgets/sign_in_widgets/sign_in_form_widget.dart';
 
 class AuthenticationScreen extends StatelessWidget {
-  const AuthenticationScreen({super.key});
+  AuthenticationScreen({super.key});
+  final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -22,60 +24,30 @@ class AuthenticationScreen extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: k20H, vertical: k10V),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Text(
-              'تسجيل الدخول',
-              style: TextStyle(
-                  fontSize: k30Sp,
-                  fontWeight: FontWeight.bold,
-                  color: kDarkBlueColor),
+            const AuthenticationTitleWidget(isSignInScreen: true,),
+            const CustomSwitchWidget(
+              isSignIn: true,
             ),
-            CustomSwitchWidget(
-              isSignIn: false,
+            SignInFormWidget(
+              globalKey: _globalKey,
+              emailController: emailController,
+              passwordController: passwordController,
             ),
-            Form(
-                child: Column(
-              children: [
-                CustomFullInputBlock(
-                    label: 'البريد الاليكتروني',
-                    hint: 'ادخل بريدك الاليكتروني',
-                    validator: ValidatorService.validateEmail,
-                    color: kBlackColor,
-                    enableBorder: true,
-                    prefixIcon: const Icon(
-                      CupertinoIcons.envelope,
-                      color: kDarkBlueColor,
-                    ),
-                    controller: TextEditingController()),
-                CustomFullInputBlock(
-                    label: 'كلمه المرور',
-                    hint: 'ادخل كلمه المرور',
-                    validator: ValidatorService.validatePassword,
-                    color: kBlackColor,
-                    enableBorder: true,
-                    prefixIcon: const Icon(
-                      CupertinoIcons.lock,
-                      color: kDarkBlueColor,
-                    ),
-                    controller: TextEditingController()),
-              ],
-            )),
-            Align(
-              alignment: Alignment.centerRight,
-              child: Text(
-                'هل نسيت كلمه المرور؟',
-                style: TextStyle(
-                    decoration: TextDecoration.underline,
-                    fontSize: k16Sp,
-                    fontWeight: FontWeight.bold,
-                    color: kDarkBlueColor),
-              ),
-            ),
-            SignInButton()
+            SignInButton(
+              isValidData: () => isValidData(),
+              signInModel: getSignInModel,
+            )
           ],
         ),
       ),
     );
   }
-}
 
+  SignInModel getSignInModel() => SignInModel(
+                email: emailController.text,
+                password: passwordController.text);
+
+  bool isValidData() => _globalKey.currentState?.validate() ?? false;
+}

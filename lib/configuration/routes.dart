@@ -24,7 +24,7 @@ class AppRoute {
 
        GoRoute(
           path: authenticationScreen,
-          builder: (context, state) => const AuthenticationScreen(),
+          builder: (context, state) =>  AuthenticationScreen(),
         ),
       ]);
 }
