@@ -6,7 +6,7 @@ import 'package:go_router/go_router.dart';
 
 
 class AppRoute {
-  static const authenticationScreen = '/authentication-screen';
+  static const authenticationScreen = '/';
 
 
   static final router = GoRouter(
