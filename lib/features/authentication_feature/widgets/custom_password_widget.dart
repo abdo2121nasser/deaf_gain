@@ -7,10 +7,14 @@ import '../../../core/utils/component/custom_full_input_block.dart';
 
 class CustomPasswordWidget extends StatefulWidget {
   final TextEditingController controller;
+  final bool isConfirm;
+  final TextEditingController? originalPasswordController;
 
   const CustomPasswordWidget({
     super.key,
     required this.controller,
+    this.isConfirm = false,
+    this.originalPasswordController,
   });
 
   @override
@@ -26,13 +30,18 @@ class _PasswordFieldState extends State<CustomPasswordWidget> {
       valueListenable: _obscureText,
       builder: (context, obscure, child) {
         return CustomFullInputBlock(
-          label: 'كلمه المرور',
-          hint: 'ادخل كلمه المرور',
-          validator: ValidatorService.validatePassword,
+          label: widget.isConfirm ? 'تأكيد كلمة المرور' : 'كلمة المرور',
+          hint: widget.isConfirm ? 'أدخل تأكيد كلمة المرور' : 'أدخل كلمة المرور',
+          validator: widget.isConfirm
+              ? (value) => ValidatorService.validateConfirmPassword(
+            value,
+            widget.originalPasswordController?.text ?? '',
+          )
+              : ValidatorService.validatePassword,
           color: kBlackColor,
           enableBorder: true,
           controller: widget.controller,
-          prefixIcon: const Icon(
+          prefixIcon: Icon(
             CupertinoIcons.lock,
             color: kDarkBlueColor,
           ),

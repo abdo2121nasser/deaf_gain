@@ -21,6 +21,16 @@ class ValidatorService {
     return null;
   }
 
+  static String? validateConfirmPassword(String? value, String originalPassword) {
+    if (value == null || value.isEmpty) {
+      return 'من فضلك أكد كلمة المرور';
+    }
+    if (value != originalPassword) {
+      return 'كلمة المرور غير متطابقة';
+    }
+    return null;
+  }
+
   static String? validateName(String? value) {
     if (value == null || value.trim().isEmpty) {
       return 'من فضلك أدخل الاسم';

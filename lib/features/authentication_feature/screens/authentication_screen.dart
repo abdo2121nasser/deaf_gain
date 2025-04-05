@@ -26,7 +26,9 @@ class AuthenticationScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            const AuthenticationTitleWidget(isSignInScreen: true,),
+            const AuthenticationTitleWidget(
+              isSignInScreen: true,
+            ),
             const CustomSwitchWidget(
               isSignIn: true,
             ),
@@ -46,8 +48,7 @@ class AuthenticationScreen extends StatelessWidget {
   }
 
   SignInModel getSignInModel() => SignInModel(
-                email: emailController.text,
-                password: passwordController.text);
+      email: emailController.text, password: passwordController.text);
 
   bool isValidData() => _globalKey.currentState?.validate() ?? false;
 }
