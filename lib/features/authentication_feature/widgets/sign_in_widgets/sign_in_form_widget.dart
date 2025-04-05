@@ -9,18 +9,15 @@ import '../../../../core/utils/values/app_size.dart';
 import '../../../../core/utils/values/font_size.dart';
 
 class SignInFormWidget extends StatelessWidget {
-  final GlobalKey<FormState> globalKey;
- final TextEditingController emailController;
- final TextEditingController passwordController;
-  const SignInFormWidget({super.key, required this.globalKey,
-  required this.emailController,
-  required this.passwordController,
-  });
+  final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  SignInFormWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Form(
-        key: globalKey,
+        key: _globalKey,
         child: Column(
           children: [
             CustomFullInputBlock(
@@ -58,4 +55,6 @@ class SignInFormWidget extends StatelessWidget {
           ],
         ));
   }
+  bool validateForm() => _globalKey.currentState?.validate() ?? false;
+
 }

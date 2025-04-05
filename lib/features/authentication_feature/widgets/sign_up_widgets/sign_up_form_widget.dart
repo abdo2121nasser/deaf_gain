@@ -9,18 +9,19 @@ import '../../../../core/utils/values/app_size.dart';
 import '../../../../core/utils/values/font_size.dart';
 
 class SignUpFormWidget extends StatelessWidget {
-  final GlobalKey<FormState> globalKey;
-  final TextEditingController emailController;
-  final TextEditingController passwordController;
-  const SignUpFormWidget({super.key, required this.globalKey,
-    required this.emailController,
-    required this.passwordController,
+  final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
+  SignUpFormWidget({
+    super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return Form(
-        key: globalKey,
+        key: _globalKey,
         child: Column(
           children: [
             CustomFullInputBlock(
@@ -39,32 +40,19 @@ class SignUpFormWidget extends StatelessWidget {
             ),
             CustomPasswordWidget(controller: passwordController),
             SizedBox(
-              height: k5V,
+              height: k14V,
             ),
-            CustomPasswordWidget(controller: passwordController,
-            isConfirm: true,
-              originalPasswordController: TextEditingController(),
+            CustomPasswordWidget(
+              controller: _confirmPasswordController,
+              isConfirm: true,
+              originalPasswordController: passwordController,
             ),
             SizedBox(
               height: k5V,
             ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: GestureDetector(
-                onTap: () {},
-                child: Text(
-                  'هل نسيت كلمه المرور؟',
-                  style: TextStyle(
-                      decoration: TextDecoration.underline,
-                      fontSize: k16Sp,
-                      fontWeight: FontWeight.bold,
-                      color: kDarkBlueColor),
-                ),
-              ),
-            ),
           ],
         ));
   }
+
+  bool validateForm() => _globalKey.currentState?.validate() ?? false;
 }
-
-
