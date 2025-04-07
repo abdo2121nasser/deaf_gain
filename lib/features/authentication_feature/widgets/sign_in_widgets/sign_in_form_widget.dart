@@ -7,6 +7,7 @@ import '../../../../core/utils/colors/colors.dart';
 import '../../../../core/utils/component/custom_full_input_block.dart';
 import '../../../../core/utils/values/app_size.dart';
 import '../../../../core/utils/values/font_size.dart';
+import '../custom_email_widget.dart';
 
 class SignInFormWidget extends StatelessWidget {
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
@@ -20,17 +21,18 @@ class SignInFormWidget extends StatelessWidget {
         key: _globalKey,
         child: Column(
           children: [
-            CustomFullInputBlock(
-                label: 'البريد الاليكتروني',
-                hint: 'ادخل بريدك الاليكتروني',
-                validator: ValidatorService.validateEmail,
-                color: kBlackColor,
-                enableBorder: true,
-                prefixIcon: const Icon(
-                  CupertinoIcons.envelope,
-                  color: kDarkBlueColor,
-                ),
-                controller: emailController),
+            // CustomFullInputBlock(
+            //     label: 'البريد الاليكتروني',
+            //     hint: 'ادخل بريدك الاليكتروني',
+            //     validator: ValidatorService.validateEmail,
+            //     color: kBlackColor,
+            //     enableBorder: true,
+            //     prefixIcon: const Icon(
+            //       CupertinoIcons.envelope,
+            //       color: kDarkBlueColor,
+            //     ),
+            //     controller: emailController),
+            CustomEmailWidget(controller: emailController,),
             SizedBox(
               height: k14V,
             ),

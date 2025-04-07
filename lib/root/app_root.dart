@@ -17,7 +17,7 @@ class DeafGainApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) => DevicePreview(
-        // enabled: true,
+        enabled: true,
         builder: (context) => SafeArea(
           child: MaterialApp.router(
             locale: const Locale('ar'),
@@ -36,7 +36,7 @@ class DeafGainApp extends StatelessWidget {
 
             debugShowCheckedModeBanner: false,
             routerConfig: AppRoute.router,
-            theme: ThemeData(scaffoldBackgroundColor: kWhiteColor),
+            theme: ThemeData(scaffoldBackgroundColor: kBackgroundColor),
           ),
         ),
       ),
