@@ -9,7 +9,7 @@ class AppRoute {
   static const forgetPasswordScreen = '/forget-password-screen';
 
   static final router =
-      GoRouter(initialLocation: forgetPasswordScreen, routes: [
+      GoRouter(initialLocation: authenticationScreen, routes: [
     GoRoute(
       path: authenticationScreen,
       builder: (context, state) => AuthenticationScreen(),

@@ -1,3 +1,4 @@
+import 'package:deaf_gain/configuration/routes.dart';
 import 'package:deaf_gain/features/authentication_feature/widgets/custom_password_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -21,17 +22,6 @@ class SignInFormWidget extends StatelessWidget {
         key: _globalKey,
         child: Column(
           children: [
-            // CustomFullInputBlock(
-            //     label: 'البريد الاليكتروني',
-            //     hint: 'ادخل بريدك الاليكتروني',
-            //     validator: ValidatorService.validateEmail,
-            //     color: kBlackColor,
-            //     enableBorder: true,
-            //     prefixIcon: const Icon(
-            //       CupertinoIcons.envelope,
-            //       color: kDarkBlueColor,
-            //     ),
-            //     controller: emailController),
             CustomEmailWidget(controller: emailController,),
             SizedBox(
               height: k14V,
@@ -43,7 +33,9 @@ class SignInFormWidget extends StatelessWidget {
             Align(
               alignment: Alignment.centerRight,
               child: GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  AppRoute.router.push(AppRoute.forgetPasswordScreen);
+                },
                 child: Text(
                   'هل نسيت كلمه المرور؟',
                   style: TextStyle(
