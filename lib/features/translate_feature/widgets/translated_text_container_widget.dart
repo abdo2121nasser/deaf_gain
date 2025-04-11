@@ -22,6 +22,7 @@ class TranslatedTextContainerWidget extends StatelessWidget {
           color: kWhiteColor, borderRadius: BorderRadius.circular(k20R)),
       child: SingleChildScrollView(
         child: Text('',
+
           style: TextStyle(
               color: kBlackColor,
               fontSize: k16Sp,

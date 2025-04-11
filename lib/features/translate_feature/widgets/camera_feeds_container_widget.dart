@@ -20,7 +20,7 @@ class CameraFeedsContainerWidget extends StatelessWidget {
           color: kDarkBlueColor,
           borderRadius: BorderRadius.circular(k14R)
       ),
-      child: Icon(CupertinoIcons.camera_fill,color: kWhiteColor,
+      child: Icon(CupertinoIcons.camera,color: kWhiteColor,
         size: MediaQuery.maybeOf(context)!.size.height*0.2,
       ),
     );

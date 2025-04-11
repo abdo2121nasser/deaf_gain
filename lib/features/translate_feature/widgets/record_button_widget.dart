@@ -40,7 +40,7 @@ class _RecordButtonWidgetState extends State<RecordButtonWidget> {
           duration: const Duration(milliseconds: 300),
           curve: Curves.easeOut,
           child: Container(
-            padding: EdgeInsets.all(k10V),
+            padding: EdgeInsets.all(k20V),
             decoration: BoxDecoration(
               color: kRedColor,
               shape: BoxShape.circle,
@@ -53,9 +53,9 @@ class _RecordButtonWidgetState extends State<RecordButtonWidget> {
               ],
             ),
             child: Icon(
-              Icons.mic,
-              color: Colors.white,
-              size: k30V,
+              Icons.circle,
+              color: kWhiteColor,
+              size: k20V,
             ),
           ),
         ),

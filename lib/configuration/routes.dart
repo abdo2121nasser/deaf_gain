@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:deaf_gain/features/authentication_feature/screens/authentication_screen.dart';
 import 'package:deaf_gain/features/authentication_feature/screens/forget_password_screen.dart';
-import 'package:deaf_gain/features/home_feature/screens/home_screen.dart';
+import 'package:deaf_gain/features/bottom_navigation_bar_feature/screens/bottom_navigation_bar_screen.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRoute {
@@ -21,7 +21,7 @@ class AppRoute {
     ),
     GoRoute(
       path: homeScreen,
-      builder: (context, state) => HomeScreen(),
+      builder: (context, state) => BottomNavigationBarScreen(),
     ),
   ]);
 }

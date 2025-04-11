@@ -1,22 +1,24 @@
-import 'package:bloc/bloc.dart';
+import 'package:deaf_gain/features/home_feature/screens/home_screen.dart';
 import 'package:deaf_gain/features/translate_feature/screens/translate_screen.dart';
+import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meta/meta.dart';
 
 part 'bottom_navigation_bar_state.dart';
 
 class BottomNavigationBarCubit extends Cubit<BottomNavigationBarState> {
-  BottomNavigationBarCubit()
-      : super(const BottomNavigationBarInitial(body: TranslateScreen()));
+  BottomNavigationBarCubit() : super(const HomeState(body: HomeScreen()));
   static BottomNavigationBarCubit get(context) => BlocProvider.of(context);
 
   set currentBody(int index) {
     switch (index) {
       case 0:
-        emit(const TranslateState(body: TranslateScreen()));
+        emit(const HomeState(body: HomeScreen()));
         break;
       case 1:
+        emit(const TranslateState(body: TranslateScreen()));
+        break;
+      case 2:
         emit(const HistoryState(body: SizedBox()));
         break;
     }
@@ -24,12 +26,12 @@ class BottomNavigationBarCubit extends Cubit<BottomNavigationBarState> {
 
   int get currentBody {
     switch (state) {
-      case BottomNavigationBarInitial():
+      case HomeState():
         return 0;
       case TranslateState():
-        return 0;
-      case HistoryState():
         return 1;
+      case HistoryState():
+        return 2;
     }
   }
 }
