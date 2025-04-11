@@ -6,16 +6,14 @@ import '../values/font_size.dart';
 class CustomAppBarWidget extends StatelessWidget
     implements PreferredSizeWidget {
   final String title;
-  final Icon icon;
+  final Icon? icon;
   final List<IconButton>? actions;
 
   const CustomAppBarWidget(
       {super.key,
       required this.title,
         this.actions,
-      this.icon = const Icon(
-        Icons.local_fire_department_outlined,
-      )});
+      this.icon });
 
   @override
   Widget build(BuildContext context) {
@@ -24,12 +22,14 @@ class CustomAppBarWidget extends StatelessWidget
       title: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          icon,
+          icon??const SizedBox.shrink(),
           Text(
             title,
             style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: k20Sp),
+                fontSize: k30Sp,
+            color: kDarkBlueColor
+            ),
           ),
         ],
       ),

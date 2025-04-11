@@ -14,7 +14,7 @@ class AuthenticationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: k20H, vertical: k10V),
         child: BlocProvider(

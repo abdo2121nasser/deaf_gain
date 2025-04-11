@@ -10,8 +10,7 @@ class AppRoute {
   static const forgetPasswordScreen = '/forget-password-screen';
   static const homeScreen = '/home-screen';
 
-  static final router =
-      GoRouter(initialLocation: homeScreen, routes: [
+  static final router = GoRouter(initialLocation: homeScreen, routes: [
     GoRoute(
       path: authenticationScreen,
       builder: (context, state) => AuthenticationScreen(),
@@ -19,7 +18,8 @@ class AppRoute {
     GoRoute(
       path: forgetPasswordScreen,
       builder: (context, state) => ForgetPasswordScreen(),
-    ), GoRoute(
+    ),
+    GoRoute(
       path: homeScreen,
       builder: (context, state) => HomeScreen(),
     ),
