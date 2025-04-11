@@ -1,4 +1,5 @@
 import 'package:deaf_gain/core/utils/colors/colors.dart';
+import 'package:deaf_gain/core/utils/values/app_size.dart';
 import 'package:deaf_gain/features/home_feature/cubits/bottom_navigation_bar_cubit/bottom_navigation_bar_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,14 @@ class HomeScreen extends StatelessWidget {
         appBar: const CustomAppBarWidget(
           title: 'مترجم لغه الاشاره',
         ),
-        body: const SizedBox(),
+        body: BlocBuilder<BottomNavigationBarCubit, BottomNavigationBarState>(
+          builder: (context, state) {
+            return Padding(
+              padding:  EdgeInsets.symmetric(horizontal: k20H),
+              child: state.body,
+            );
+          },
+        ),
         bottomNavigationBar: CustomBottomNavigationBarWidget(),
       ),
     );

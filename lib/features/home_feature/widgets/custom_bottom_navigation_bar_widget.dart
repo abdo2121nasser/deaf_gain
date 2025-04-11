@@ -24,7 +24,7 @@ class CustomBottomNavigationBarWidget extends StatelessWidget {
           items: const [
             BottomNavigationBarItem(
                 icon: Icon(CupertinoIcons.camera_fill), label: 'ترجمه'),
-            BottomNavigationBarItem(icon: Icon(Icons.history), label: 'تاريخ'),
+            BottomNavigationBarItem(icon: Icon(Icons.history), label: 'السجل'),
           ],
         );
       },

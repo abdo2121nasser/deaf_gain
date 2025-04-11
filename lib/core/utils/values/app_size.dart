@@ -7,6 +7,7 @@ final double k14V = 14.h;
 final double k16V = 16.h;
 final double k18V = 18.h;
 final double k20V = 20.h;
+final double k30V = 40.h;
 
 final double k1H = 1.w;
 final double k1_5H = 1.5.w;

@@ -1,4 +1,4 @@
 
 
 
-    const String kImageAsset='assets/select_image.jpg';
+    const String kImageAsset='assets/images/welcome3.webp';
