@@ -36,13 +36,23 @@ class DeafGainApp extends StatelessWidget {
 
             debugShowCheckedModeBanner: false,
             routerConfig: AppRoute.router,
-            theme: ThemeData(scaffoldBackgroundColor: kBackgroundColor,
-            bottomNavigationBarTheme: const BottomNavigationBarThemeData(backgroundColor: kBackgroundColor),
-            appBarTheme: const AppBarTheme(backgroundColor: kBackgroundColor)
-            ),
+            theme: _getMaterialThem,
           ),
         ),
       ),
+    );
+  }
+
+  ThemeData get _getMaterialThem {
+    return ThemeData(
+      scaffoldBackgroundColor: kBackgroundColor,
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          backgroundColor: kDarkBlueColor,
+          selectedItemColor: kWhiteColor,
+          unselectedItemColor: kGreyColor),
+      appBarTheme: const AppBarTheme(
+          backgroundColor: kBackgroundColor,
+          iconTheme: IconThemeData(color: kDarkBlueColor)),
     );
   }
 }

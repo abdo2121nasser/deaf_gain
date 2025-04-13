@@ -19,8 +19,6 @@ class CustomBottomNavigationBarWidget extends StatelessWidget {
           onTap: (index) {
             BottomNavigationBarCubit.get(context).currentBody = index;
           },
-          selectedItemColor: kDarkBlueColor,
-          unselectedItemColor: kGreyColor,
           items: const [
             BottomNavigationBarItem(
                 icon: Icon(Icons.home), label: 'المنزل'),
