@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import '../values/app_size.dart';
@@ -20,8 +19,7 @@ class GeneralButtonWidget extends StatelessWidget {
       required this.textColor,
       required this.backgroundColor,
       required this.borderRadius,
-      this.icon
-      });
+      this.icon});
 
   @override
   Widget build(BuildContext context) {
@@ -36,15 +34,15 @@ class GeneralButtonWidget extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            icon==null?const SizedBox():icon!,
-            SizedBox(width: k5H,),
 
             Text(
               label,
               style: TextStyle(fontSize: k16Sp, color: textColor),
             ),
-
-
+            SizedBox(
+              width: k10H,
+            ),
+            icon == null ? const SizedBox() : icon!,
           ],
         ));
   }

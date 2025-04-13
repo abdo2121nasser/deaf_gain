@@ -15,9 +15,9 @@ class CustomBottomNavigationBarWidget extends StatelessWidget {
     return BlocBuilder<BottomNavigationBarCubit, BottomNavigationBarState>(
       builder: (context, state) {
         return BottomNavigationBar(
-          currentIndex: BottomNavigationBarCubit.get(context).currentBody,
+          currentIndex: BottomNavigationBarCubit.get(context).setCurrentBodyWithIndex,
           onTap: (index) {
-            BottomNavigationBarCubit.get(context).currentBody = index;
+            BottomNavigationBarCubit.get(context).setCurrentBodyWithIndex = index;
           },
           items: const [
             BottomNavigationBarItem(

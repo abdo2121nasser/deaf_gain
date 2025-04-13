@@ -10,7 +10,7 @@ class BottomNavigationBarCubit extends Cubit<BottomNavigationBarState> {
   BottomNavigationBarCubit() : super(const HomeState(body: HomeScreen()));
   static BottomNavigationBarCubit get(context) => BlocProvider.of(context);
 
-  set currentBody(int index) {
+  set setCurrentBodyWithIndex(int index) {
     switch (index) {
       case 0:
         emit(const HomeState(body: HomeScreen()));
@@ -24,7 +24,7 @@ class BottomNavigationBarCubit extends Cubit<BottomNavigationBarState> {
     }
   }
 
-  int get currentBody {
+  int get setCurrentBodyWithIndex {
     switch (state) {
       case HomeState():
         return 0;

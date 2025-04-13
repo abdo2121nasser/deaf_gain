@@ -8,4 +8,4 @@ const Color kBackgroundColor = Color(0xfff5f7ff);
 
 const Color kBlackColor = Color(0xff040201);
 const Color kDarkBlueColor = Color(0xff2b2d5d);
-const Color kGreyColor = Color(0xff6f7783);
+const Color kGreyColor = Color(0xee6f7783);
