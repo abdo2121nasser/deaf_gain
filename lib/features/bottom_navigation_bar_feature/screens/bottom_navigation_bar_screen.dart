@@ -1,5 +1,6 @@
 import 'package:deaf_gain/core/utils/colors/colors.dart';
 import 'package:deaf_gain/core/utils/values/app_size.dart';
+import 'package:deaf_gain/features/bottom_navigation_bar_feature/widgets/custom_drawer_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,7 +28,7 @@ class BottomNavigationBarScreen extends StatelessWidget {
             );
           },
         ),
-        drawer: Drawer(),
+        drawer: CustomDrawerWidget(),
         bottomNavigationBar: const CustomBottomNavigationBarWidget(),
       ),
     );

@@ -46,6 +46,7 @@ class DeafGainApp extends StatelessWidget {
   ThemeData get _getMaterialThem {
     return ThemeData(
       scaffoldBackgroundColor: kBackgroundColor,
+      drawerTheme:const DrawerThemeData(backgroundColor: kBackgroundColor),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           backgroundColor: kDarkBlueColor,
           selectedItemColor: kWhiteColor,
