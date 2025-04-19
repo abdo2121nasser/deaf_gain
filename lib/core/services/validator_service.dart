@@ -35,7 +35,7 @@ class ValidatorService {
     if (value == null || value.trim().isEmpty) {
       return 'من فضلك أدخل الاسم';
     }
-    final nameRegex = RegExp(r"^[a-zA-Z\s]+$");
+    final nameRegex = RegExp(r"^[\u0600-\u06FFa-zA-Z\s]+$");
     if (!nameRegex.hasMatch(value)) {
       return 'يجب أن يحتوي الاسم على حروف ومسافات فقط';
     }

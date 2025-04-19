@@ -12,7 +12,6 @@ class GeneralTextFormField extends StatelessWidget {
   final TextEditingController? controller;
   final bool enableBorder;
   final bool multiLine;
-  final bool isArabic;
   final bool readOnly;
   final String? hint;
   final Icon? suffixIcon;
@@ -28,7 +27,6 @@ class GeneralTextFormField extends StatelessWidget {
     required this.controller,
     this.enableBorder = false,
     this.multiLine = false,
-    this.isArabic = false,
     this.readOnly = false,
     this.isVisible = true,
     this.hint,
@@ -44,11 +42,14 @@ class GeneralTextFormField extends StatelessWidget {
     return TextFormField(
       validator: validator,
       controller: controller,
+
+      style: const TextStyle(color: kBlackColor),
+      cursorColor: kBlackColor,
+
       readOnly: readOnly,
       minLines: multiLine ? 1 : null,
       maxLines: multiLine ? 5 : 1, // Set maxLines to 4 if multiline is enabled
       keyboardType: multiLine ? TextInputType.multiline : null,
-      textAlign: isArabic ? TextAlign.end : TextAlign.start,
       obscureText: !isVisible,
       inputFormatters: <TextInputFormatter>[
         if (onlyInteger)
@@ -61,6 +62,7 @@ class GeneralTextFormField extends StatelessWidget {
       decoration: InputDecoration(
         contentPadding: EdgeInsets.symmetric(horizontal: k14H, vertical: k10V),
         fillColor: kWhiteColor,
+
         filled: true,
         hintText: hint,
         hintStyle: TextStyle(color: kGreyColor, fontSize: k14Sp),
@@ -73,6 +75,7 @@ class GeneralTextFormField extends StatelessWidget {
             color: kRedColor,
           ),
         ),
+        errorStyle: const TextStyle(color: kRedColor),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.all(
             Radius.circular(k12R),
