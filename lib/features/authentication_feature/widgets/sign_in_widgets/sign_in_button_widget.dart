@@ -8,7 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/utils/colors/colors.dart';
 import '../../../../core/utils/component/general_button_widget.dart';
 import '../../../../core/utils/values/app_size.dart';
-import '../../models/authentication_state.dart';
+import '../../entities/authentication_state_entity.dart';
 
 class SignInButtonWidget extends StatelessWidget {
   const SignInButtonWidget({super.key});

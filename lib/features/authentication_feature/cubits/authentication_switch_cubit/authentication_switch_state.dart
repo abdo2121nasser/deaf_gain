@@ -2,7 +2,7 @@ part of 'authentication_switch_cubit.dart';
 
 @immutable
 sealed class AuthenticationSwitchState  {
-  final AuthenticationState authenticationState;
+  final AuthenticationStateEntity authenticationState;
   final bool isSignInState;
   const AuthenticationSwitchState(
       {required this.isSignInState, required this.authenticationState});

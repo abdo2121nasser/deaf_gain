@@ -1,13 +1,13 @@
-import 'package:deaf_gain/features/home_feature/models/instruction_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/utils/colors/colors.dart';
 import '../../../core/utils/values/app_size.dart';
 import '../../../core/utils/values/font_size.dart';
+import '../entities/instruction_entity.dart';
 
 class InstructionContainerWidget extends StatelessWidget {
-  final InstructionModel instructionModel;
+  final InstructionEntity instructionModel;
   const InstructionContainerWidget({
     super.key,
     required this.instructionModel

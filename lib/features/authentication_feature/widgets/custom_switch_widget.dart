@@ -1,5 +1,5 @@
 import 'package:deaf_gain/features/authentication_feature/cubits/authentication_switch_cubit/authentication_switch_cubit.dart';
-import 'package:deaf_gain/features/authentication_feature/models/authentication_state.dart';
+import 'package:deaf_gain/features/authentication_feature/entities/authentication_state_entity.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/utils/colors/colors.dart';
@@ -27,7 +27,7 @@ class CustomSwitchWidget extends StatelessWidget {
               onTap: () {
                 AuthenticationSwitchCubit.get(context)
                     .changeAuthenticationState(
-                        authenticationState: SignUpSwitchAuthenticationState());
+                        authenticationState: SignUpSwitchAuthenticationStateEntity());
               },
               child: Container(
                 decoration: BoxDecoration(
@@ -54,7 +54,7 @@ class CustomSwitchWidget extends StatelessWidget {
               onTap: () {
                 AuthenticationSwitchCubit.get(context)
                     .changeAuthenticationState(
-                        authenticationState: SignInSwitchAuthenticationState());
+                        authenticationState: SignInSwitchAuthenticationStateEntity());
               },
               child: Container(
                 decoration: BoxDecoration(

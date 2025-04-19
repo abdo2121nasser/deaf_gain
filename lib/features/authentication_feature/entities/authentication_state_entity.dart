@@ -7,20 +7,20 @@ import '../widgets/authentication_title_widget.dart';
 import '../widgets/sign_up_widgets/sign_up_button_widget.dart';
 import '../widgets/sign_up_widgets/sign_up_form_widget.dart';
 
-sealed class AuthenticationState {
+sealed class AuthenticationStateEntity {
   final Widget title;
   final Widget form;
   final Widget button;
 
-  const AuthenticationState({
+  const AuthenticationStateEntity({
     required this.title,
     required this.form,
     required this.button,
   });
 }
 
-class SignInSwitchAuthenticationState extends AuthenticationState {
-  SignInSwitchAuthenticationState()
+class SignInSwitchAuthenticationStateEntity extends AuthenticationStateEntity {
+  SignInSwitchAuthenticationStateEntity()
       : super(
     title: const AuthenticationTitleWidget(isSignInScreen: true),
     form:  SignInFormWidget(),
@@ -28,8 +28,8 @@ class SignInSwitchAuthenticationState extends AuthenticationState {
   );
 }
 
-class SignUpSwitchAuthenticationState extends AuthenticationState {
-  SignUpSwitchAuthenticationState()
+class SignUpSwitchAuthenticationStateEntity extends AuthenticationStateEntity {
+  SignUpSwitchAuthenticationStateEntity()
       : super(
     title: const AuthenticationTitleWidget(isSignInScreen: false),
     form:  SignUpFormWidget(),
@@ -37,16 +37,3 @@ class SignUpSwitchAuthenticationState extends AuthenticationState {
   );
 }
 
-// SwitchModel signInSwitchModel = SwitchModel(
-//     currentTitle: const AuthenticationTitleWidget(
-//       isSignInScreen: true,
-//     ),
-//     currentForm: SignInFormWidget(),
-//     currentButton: const SignInButtonWidget());
-//
-// SwitchModel signUpSwitchModel = SwitchModel(
-//     currentTitle: const AuthenticationTitleWidget(
-//       isSignInScreen: false,
-//     ),
-//     currentForm: SignUpFormWidget(),
-//     currentButton:  const SignUpButtonWidget());
