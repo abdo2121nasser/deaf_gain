@@ -8,20 +8,22 @@ import 'package:deaf_gain/features/main_feature/widgets/sign_out_button_widget.d
 import 'package:flutter/material.dart';
 
 import '../../../core/utils/component/custom_profile_avatar_widget.dart';
-import '../entities/drawer_item_entity.dart';
+import '../entities/List_title_item_entity.dart';
 import 'drawer_list_view_widget.dart';
 
 class CustomDrawerWidget extends StatelessWidget {
   CustomDrawerWidget({super.key});
-  final List<DrawerItemEntity> _items = [
-    DrawerItemEntity(text: 'الحساب', iconData: Icons.person, onClick: () {
+  final List<ListTitleItemEntity> _items = [
+    ListTitleItemEntity(text: 'الحساب', iconData: Icons.person, onClick: () {
       AppRoute.router.push(AppRoute.profileScreen);
     }),
-    DrawerItemEntity(
-        text: 'الاعدادات', iconData: Icons.settings, onClick: () {}),
-    DrawerItemEntity(
+    ListTitleItemEntity(
+        text: 'الاعدادات', iconData: Icons.settings, onClick: () {
+          AppRoute.router.push(AppRoute.settingScreen);
+    }),
+    ListTitleItemEntity(
         text: 'دليل لغه الاشعاره', iconData: Icons.menu_book, onClick: () {}),
-    DrawerItemEntity(
+    ListTitleItemEntity(
         text: 'النسخه المميزه', iconData: Icons.paid, onClick: () {}),
   ];
 

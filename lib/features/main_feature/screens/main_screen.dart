@@ -1,4 +1,3 @@
-import 'package:deaf_gain/core/utils/colors/colors.dart';
 import 'package:deaf_gain/core/utils/values/app_size.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

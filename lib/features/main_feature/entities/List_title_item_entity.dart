@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 
-class DrawerItemEntity{
+class ListTitleItemEntity{
 
   final String text;
   final IconData iconData;
   final VoidCallback onClick;
 
-  DrawerItemEntity({required this.text, required this.iconData,required this.onClick});
+  ListTitleItemEntity({required this.text, required this.iconData,required this.onClick});
 
 }
