@@ -7,41 +7,42 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 import '../configuration/routes.dart';
 
+final themeNotifier = ThemeNotifier();
+
 class DeafGainApp extends StatelessWidget {
   const DeafGainApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(360, 690),
-      minTextAdapt: true,
-      splitScreenMode: true,
-      builder: (context, child) => DevicePreview(
-        enabled: true,
-        builder: (context) => SafeArea(
-          child: MaterialApp.router(
-            locale: const Locale('ar'),
-            // Always use Arabic
-            supportedLocales: const [
-              Locale('ar'), // Only Arabic supported
-            ],
-            localeResolutionCallback: (locale, supportedLocales) {
-              return const Locale('ar'); // Force Arabic locale
-            },
-            localizationsDelegates: const [
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
-
-            debugShowCheckedModeBanner: false,
-            routerConfig: AppRoute.router,
-            theme: _getLightTheme,
-            darkTheme: _getDarkMaterialTheme,
-            themeMode: ThemeMode.dark,
+    return ValueListenableBuilder<ThemeMode>(
+      valueListenable: themeNotifier,
+      builder: (context, mode, _) {
+        return ScreenUtilInit(
+          designSize: const Size(360, 690),
+          minTextAdapt: true,
+          splitScreenMode: true,
+          builder: (context, child) => DevicePreview(
+            enabled: true,
+            builder: (context) => SafeArea(
+              child: MaterialApp.router(
+                locale: const Locale('ar'),
+                supportedLocales: const [Locale('ar')],
+                localeResolutionCallback: (locale, supportedLocales) => const Locale('ar'),
+                localizationsDelegates: const [
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate,
+                ],
+                debugShowCheckedModeBanner: false,
+                routerConfig: AppRoute.router,
+                theme: _getLightTheme,
+                darkTheme: _getDarkMaterialTheme,
+                themeMode: mode,
+              ),
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 
@@ -49,29 +50,40 @@ class DeafGainApp extends StatelessWidget {
     return ThemeData(
       brightness: Brightness.light,
       scaffoldBackgroundColor: kBackgroundColor,
-      drawerTheme:const DrawerThemeData(backgroundColor: kBackgroundColor),
+      drawerTheme: const DrawerThemeData(backgroundColor: kBackgroundColor),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          backgroundColor: kDarkBlueColor,
-          selectedItemColor: kWhiteColor,
-          unselectedItemColor: kGreyColor),
+        backgroundColor: kDarkBlueColor,
+        selectedItemColor: kWhiteColor,
+        unselectedItemColor: kGreyColor,
+      ),
       appBarTheme: const AppBarTheme(
-          backgroundColor: kBackgroundColor,
-          iconTheme: IconThemeData(color: kDarkBlueColor)),
-    );
-  }
-  ThemeData get _getDarkMaterialTheme {
-    return ThemeData(
-      brightness: Brightness.dark,
-      scaffoldBackgroundColor: kBackgroundColor,
-      drawerTheme:const DrawerThemeData(backgroundColor: kBackgroundColor),
-      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          backgroundColor: kDarkBlueColor,
-          selectedItemColor: kWhiteColor,
-          unselectedItemColor: kGreyColor),
-      appBarTheme: const AppBarTheme(
-          backgroundColor: kBackgroundColor,
-          iconTheme: IconThemeData(color: kDarkBlueColor)),
+        backgroundColor: kBackgroundColor,
+        iconTheme: IconThemeData(color: kDarkBlueColor),
+      ),
     );
   }
 
+  ThemeData get _getDarkMaterialTheme {
+    return ThemeData(
+      brightness: Brightness.dark,
+      // scaffoldBackgroundColor: Colors.black,
+      drawerTheme: const DrawerThemeData(backgroundColor: kBlackColor),
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+        backgroundColor: kDarkBlueColor,
+        selectedItemColor: kBlackColor,
+        unselectedItemColor: kGreyColor,
+      ),
+      // appBarTheme: const AppBarTheme(
+      //   backgroundColor: Colors.black,
+      //   iconTheme: IconThemeData(color: Colors.white),
+      // ),
+    );
+  }
+}
+class ThemeNotifier extends ValueNotifier<ThemeMode> {
+  ThemeNotifier() : super(ThemeMode.light);
+
+  void toggleTheme() {
+    value = value == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
+  }
 }
