@@ -12,6 +12,7 @@ class GeneralTextFormField extends StatelessWidget {
   final TextEditingController? controller;
   final bool enableBorder;
   final bool multiLine;
+  final bool expandMultiLine;
   final bool readOnly;
   final String? hint;
   final Icon? suffixIcon;
@@ -27,6 +28,7 @@ class GeneralTextFormField extends StatelessWidget {
     required this.controller,
     this.enableBorder = false,
     this.multiLine = false,
+    this.expandMultiLine=false,
     this.readOnly = false,
     this.isVisible = true,
     this.hint,
@@ -47,7 +49,7 @@ class GeneralTextFormField extends StatelessWidget {
       cursorColor: kBlackColor,
 
       readOnly: readOnly,
-      minLines: multiLine ? 1 : null,
+      minLines: multiLine ? expandMultiLine?5:1 : null,
       maxLines: multiLine ? 5 : 1, // Set maxLines to 4 if multiline is enabled
       keyboardType: multiLine ? TextInputType.multiline : null,
       obscureText: !isVisible,

@@ -39,7 +39,7 @@ class GeneralButtonWidget extends StatelessWidget {
               label,
               style: TextStyle(fontSize: k16Sp, color: textColor),
             ),
-            SizedBox(
+            icon == null ?const SizedBox.shrink(): SizedBox(
               width: k10H,
             ),
             icon == null ? const SizedBox() : icon!,

@@ -3,6 +3,7 @@ import 'package:deaf_gain/root/app_root.dart';
 import 'package:flutter/material.dart';
 
 import '../../main_feature/entities/List_title_item_entity.dart';
+import 'dialog_boxes_widgets.dart';
 
 class SettingScreenBodyWidget extends StatefulWidget {
   const SettingScreenBodyWidget({super.key});
@@ -33,7 +34,9 @@ class _SettingScreenBodyWidgetState extends State<SettingScreenBodyWidget> {
       ListTitleItemEntity(
         text: 'قيم التطبيق',
         iconData: Icons.star_rate_rounded,
-        onClick: () {},
+        onClick: () {
+          showRatingDialog(context);
+        },
       ),
       ListTitleItemEntity(
         text: 'شارك التطبيق',
@@ -43,11 +46,14 @@ class _SettingScreenBodyWidgetState extends State<SettingScreenBodyWidget> {
       ListTitleItemEntity(
         text: 'تواصل معنا',
         iconData: Icons.contact_support,
-        onClick: () {},
+        onClick: () {
+          showContactInfoDialog(context);
+        },
       ),
     ];
 
     return Column(
+
       children: [
         SettingOptionsListViewWidget(items: items),
       ],
