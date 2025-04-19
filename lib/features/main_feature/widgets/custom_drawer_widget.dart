@@ -3,11 +3,12 @@ import 'package:deaf_gain/core/utils/colors/colors.dart';
 import 'package:deaf_gain/core/utils/component/general_button_widget.dart';
 import 'package:deaf_gain/core/utils/values/app_size.dart';
 import 'package:deaf_gain/core/utils/values/font_size.dart';
-import 'package:deaf_gain/features/bottom_navigation_bar_feature/entities/drawer_item_entity.dart';
-import 'package:deaf_gain/features/bottom_navigation_bar_feature/widgets/sign_out_button_widget.dart';
+import 'package:deaf_gain/features/main_feature/widgets/sign_out_button_widget.dart';
+
 import 'package:flutter/material.dart';
 
 import '../../../core/utils/component/custom_profile_avatar_widget.dart';
+import '../entities/drawer_item_entity.dart';
 import 'drawer_list_view_widget.dart';
 
 class CustomDrawerWidget extends StatelessWidget {
@@ -47,9 +48,9 @@ class CustomDrawerWidget extends StatelessWidget {
           DrawerListViewWidget(
             items: _items,
           ),
-Spacer(),
+const Spacer(),
           const SignOutButtonWidget(),
-          Spacer(),
+          const Spacer(),
 
         ],
       ),

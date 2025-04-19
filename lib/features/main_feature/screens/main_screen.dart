@@ -1,6 +1,5 @@
 import 'package:deaf_gain/core/utils/colors/colors.dart';
 import 'package:deaf_gain/core/utils/values/app_size.dart';
-import 'package:deaf_gain/features/bottom_navigation_bar_feature/widgets/custom_drawer_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,9 +7,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/utils/component/custom_app_bar_widget.dart';
 import '../cubits/bottom_navigation_bar_cubit/bottom_navigation_bar_cubit.dart';
 import '../widgets/custom_bottom_navigation_bar_widget.dart';
+import '../widgets/custom_drawer_widget.dart';
 
-class BottomNavigationBarScreen extends StatelessWidget {
-  const BottomNavigationBarScreen({super.key});
+class MainScreen extends StatelessWidget {
+  const MainScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

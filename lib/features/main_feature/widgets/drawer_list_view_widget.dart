@@ -1,8 +1,8 @@
-import 'package:deaf_gain/features/bottom_navigation_bar_feature/entities/drawer_item_entity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/utils/colors/colors.dart';
+import '../entities/drawer_item_entity.dart';
 
 class DrawerListViewWidget extends StatelessWidget {
   final List<DrawerItemEntity> items;

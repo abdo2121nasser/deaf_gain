@@ -7,8 +7,9 @@ import 'package:deaf_gain/core/utils/values/font_size.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/utils/values/app_size.dart';
-import '../../bottom_navigation_bar_feature/widgets/profile_tiltle_widget.dart';
-import '../../bottom_navigation_bar_feature/widgets/update_profile_data_button_widget.dart';
+import '../../main_feature/widgets/profile_title_widget.dart';
+import '../../main_feature/widgets/update_profile_data_button_widget.dart';
+
 
 class ProfileScreenBodyWidget extends StatefulWidget {
   const ProfileScreenBodyWidget({super.key});

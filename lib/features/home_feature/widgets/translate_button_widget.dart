@@ -1,9 +1,9 @@
-import 'package:deaf_gain/features/bottom_navigation_bar_feature/cubits/bottom_navigation_bar_cubit/bottom_navigation_bar_cubit.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../../core/utils/colors/colors.dart';
 import '../../../core/utils/component/general_button_widget.dart';
 import '../../../core/utils/values/app_size.dart';
+import '../../main_feature/cubits/bottom_navigation_bar_cubit/bottom_navigation_bar_cubit.dart';
 
 class TranslateButtonWidget extends StatelessWidget {
   const TranslateButtonWidget({
