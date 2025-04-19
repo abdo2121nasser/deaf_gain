@@ -18,7 +18,7 @@ class CustomEmailWidget extends StatelessWidget {
       label: 'البريد الاليكتروني',
       hint: 'ادخل بريدك الاليكتروني',
       validator: ValidatorService.validateEmail,
-      color: kBlackColor,
+      textColor: kBlackColor,
       enableBorder: true,
       prefixIcon: const Icon(
         CupertinoIcons.envelope,

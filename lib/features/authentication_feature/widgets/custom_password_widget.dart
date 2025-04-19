@@ -38,7 +38,7 @@ class _PasswordFieldState extends State<CustomPasswordWidget> {
             widget.originalPasswordController?.text ?? '',
           )
               : ValidatorService.validatePassword,
-          color: kBlackColor,
+          textColor: kBlackColor,
           enableBorder: true,
           controller: widget.controller,
           prefixIcon: Icon(

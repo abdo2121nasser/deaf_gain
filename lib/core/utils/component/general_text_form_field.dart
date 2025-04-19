@@ -105,7 +105,7 @@ class GeneralTextFormField extends StatelessWidget {
               )
             : null,
         suffixIcon: suffixIcon != null
-            ? InkWell(
+            ? GestureDetector(
                 onTap: () {
                   if (suffixIconFunction != null) {
                     suffixIconFunction!(); // Call the function safely
@@ -114,7 +114,7 @@ class GeneralTextFormField extends StatelessWidget {
               )
             : null,
         prefixIcon: prefixIcon != null
-            ? InkWell(
+            ? GestureDetector(
                 onTap: () {
                   if (prefixIconFunction != null) {
                     prefixIconFunction!(); // Call the function safely

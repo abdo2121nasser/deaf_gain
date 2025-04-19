@@ -5,7 +5,7 @@ import 'general_text_form_field.dart';
 
 class CustomFullInputBlock extends StatelessWidget {
   final String label;
-  final Color color;
+  final Color textColor;
   final TextEditingController controller;
   final bool enableBorder;
   // final bool isNormalInput;
@@ -24,7 +24,7 @@ class CustomFullInputBlock extends StatelessWidget {
   const CustomFullInputBlock({
     super.key,
     required this.label,
-    required this.color,
+    required this.textColor,
     required this.controller,
     this.readOnly = false,
     this.enableBorder = false,
@@ -50,7 +50,7 @@ class CustomFullInputBlock extends StatelessWidget {
           label,
           style: TextStyle(
             fontSize: k16Sp,
-            color: color,
+            color: textColor,
             fontWeight: FontWeight.bold
           ),
         ),

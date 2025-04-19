@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../core/utils/values/app_size.dart';
+import '../values/app_size.dart';
 
 class CustomProfileAvatarWidget extends StatelessWidget {
   const CustomProfileAvatarWidget({
