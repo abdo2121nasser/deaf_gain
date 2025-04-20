@@ -9,12 +9,12 @@ import 'package:deaf_gain/features/main_feature/widgets/sign_out_button_widget.d
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../core/utils/component/custom_profile_avatar_widget.dart';
+import '../../../core/utils/component/profile_avatar_widget.dart';
 import '../entities/List_title_item_entity.dart';
 import 'drawer_list_view_widget.dart';
 
 class CustomDrawerWidget extends StatelessWidget {
-  CustomDrawerWidget({super.key});
+  const CustomDrawerWidget({super.key});
 
 
   @override
@@ -40,7 +40,7 @@ class CustomDrawerWidget extends StatelessWidget {
         children: [
           SizedBox(height: k16V,),
 
-          const CustomProfileAvatarWidget(),
+          const ProfileAvatarWidget(),
           SizedBox(height: k5V,),
           Text(
             'محمد احمد',

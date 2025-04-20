@@ -1,3 +1,4 @@
+import 'package:deaf_gain/configuration/routes.dart';
 import 'package:deaf_gain/features/authentication_feature/cubits/authentication_switch_cubit/authentication_switch_cubit.dart';
 import 'package:deaf_gain/features/authentication_feature/cubits/authentication_switch_cubit/authentication_switch_cubit.dart';
 import 'package:deaf_gain/features/authentication_feature/models/sign_in_model.dart';
@@ -26,6 +27,7 @@ class SignInButtonWidget extends StatelessWidget {
                         email: formState.emailController.text,
                         password: formState.passwordController.text)
                     .toJson());
+                AppRoute.router.pushReplacement(AppRoute.homeScreen);
               }
             },
             size: Size(double.maxFinite, k20V),

@@ -1,14 +1,13 @@
 import 'package:deaf_gain/core/services/validator_service.dart';
 import 'package:deaf_gain/core/utils/colors/colors.dart';
 import 'package:deaf_gain/core/utils/component/custom_full_input_block.dart';
-import 'package:deaf_gain/core/utils/component/custom_profile_avatar_widget.dart';
-import 'package:deaf_gain/core/utils/component/general_button_widget.dart';
-import 'package:deaf_gain/core/utils/values/font_size.dart';
+
 import 'package:flutter/material.dart';
 
 import '../../../core/utils/values/app_size.dart';
 import '../../main_feature/widgets/profile_title_widget.dart';
 import '../../main_feature/widgets/update_profile_data_button_widget.dart';
+import 'custom_profile_avatar_widget.dart';
 
 
 class ProfileScreenBodyWidget extends StatefulWidget {

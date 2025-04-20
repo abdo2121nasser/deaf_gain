@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 import '../values/app_size.dart';
 
-class CustomProfileAvatarWidget extends StatelessWidget {
-  const CustomProfileAvatarWidget({
+class ProfileAvatarWidget extends StatelessWidget {
+  const ProfileAvatarWidget({
     super.key,
   });
 
