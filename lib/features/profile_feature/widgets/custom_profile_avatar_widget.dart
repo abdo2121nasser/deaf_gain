@@ -22,7 +22,7 @@ class CustomProfileAvatarWidget extends StatelessWidget {
           onTap: () {
             _showImagePickerBottomSheet(
                 context: context,
-                onCameraTap: ImageCubit.get(context).pickImageFromGallery,
+                onCameraTap: ImageCubit.get(context).pickImageFromCamera,
                 onGalleryTap: ImageCubit.get(context).pickImageFromGallery);
           },
           child: CircleAvatar(
