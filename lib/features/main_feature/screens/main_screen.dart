@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/utils/component/custom_app_bar_widget.dart';
 import '../cubits/bottom_navigation_bar_cubit/bottom_navigation_bar_cubit.dart';
+import '../cubits/payment_cubit/payment_cubit.dart';
 import '../widgets/custom_bottom_navigation_bar_widget.dart';
 import '../widgets/custom_drawer_widget.dart';
 
@@ -22,12 +23,15 @@ class MainScreen extends StatelessWidget {
         body: BlocBuilder<BottomNavigationBarCubit, BottomNavigationBarState>(
           builder: (context, state) {
             return Padding(
-              padding:  EdgeInsets.symmetric(horizontal: k20H),
+              padding: EdgeInsets.symmetric(horizontal: k20H),
               child: state.body,
             );
           },
         ),
-        drawer: CustomDrawerWidget(),
+        drawer: BlocProvider(
+          create: (context) => PaymentCubit(),
+          child: CustomDrawerWidget(),
+        ),
         bottomNavigationBar: const CustomBottomNavigationBarWidget(),
       ),
     );

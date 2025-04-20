@@ -1,0 +1,5 @@
+class ApiKeysConst
+{
+ static const String stripePublishKey='pk_test_51Ok4mvIllUFneAsCYFVEbXTzByz42rn3uCVotuBYli8cUVre5HXcIdrCnQk0Og3GwGvstm7dsaOVTyrpbe558lXH001FX8Py5U';
+ static const String stripeSecretKey='sk_test_51Ok4mvIllUFneAsCJGcTXmOgybzaxtgZbcseJrLFuhK17MN5OlyP7kLqTNIkwgIqAjEYjnoDYNcIXDGxrF4eqssv006rsqu0rw';
+}
