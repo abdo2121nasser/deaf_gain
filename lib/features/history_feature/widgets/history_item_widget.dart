@@ -16,7 +16,7 @@ class HistoryItemWidget extends StatelessWidget {
     return LayoutBuilder(builder: (context, constrain) {
         return Container(
           width: double.maxFinite,
-          height: MediaQuery.maybeOf(context)!.size.height*0.1,
+          height: k60V,
           decoration: BoxDecoration(
               color: kWhiteColor,
               borderRadius: BorderRadius.circular(k10R),
