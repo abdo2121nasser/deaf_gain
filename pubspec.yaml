@@ -48,9 +48,8 @@ dependencies:
   share_plus: ^10.1.4
   flutter_stripe: ^11.3.0
   image_picker: ^1.1.2
-
-
-
+  flutter_cache_manager: ^3.3.0
+  video_player: ^2.3.2
 
 dev_dependencies:
   flutter_test:

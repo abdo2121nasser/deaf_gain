@@ -27,6 +27,7 @@ final double k14R = 14.r;
 final double k16R = 16.r;
 final double k18R = 18.r;
 final double k20R = 20.r;
+final double k22R = 22.r;
 final double k25R = 25.r;
 final double k30R = 30.r;
 final double k50R = 50.r;

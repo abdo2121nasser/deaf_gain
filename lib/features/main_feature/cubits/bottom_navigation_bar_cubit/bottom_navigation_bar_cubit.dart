@@ -4,6 +4,8 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../history_feature/screens/history_screen.dart';
+
 part 'bottom_navigation_bar_state.dart';
 
 class BottomNavigationBarCubit extends Cubit<BottomNavigationBarState> {
@@ -19,7 +21,7 @@ class BottomNavigationBarCubit extends Cubit<BottomNavigationBarState> {
         emit(const TranslateState(body: TranslateScreen()));
         break;
       case 2:
-        emit(const HistoryState(body: SizedBox()));
+        emit(const HistoryState(body: HistoryScreen()));
         break;
     }
   }
