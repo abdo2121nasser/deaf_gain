@@ -19,7 +19,7 @@ class HistoryItemWidget extends StatelessWidget {
           height: MediaQuery.maybeOf(context)!.size.height*0.1,
           decoration: BoxDecoration(
               color: kWhiteColor,
-              borderRadius: BorderRadius.circular(k22R),
+              borderRadius: BorderRadius.circular(k10R),
               border: Border.all(width: k1H, color: kBlackColor)),
           child: Row(
             mainAxisSize: MainAxisSize.max,
@@ -27,7 +27,7 @@ class HistoryItemWidget extends StatelessWidget {
             children: [
               DeleteButtonWidget(width: constrain.maxWidth*0.15,),
               SampleOfHistoryDataWidget(width: constrain.maxWidth*0.45,),
-              ImageOfVideoWidget(width: constrain.maxWidth* 0.35,)
+              ImageOfVideoWidget(constraints: constrain,)
             ],
           ),
         );

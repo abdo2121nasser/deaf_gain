@@ -19,7 +19,7 @@ class SampleOfHistoryDataWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'مرحباddddddddddddddddddddddd انا احمد',
+            'مرحبا انا احمد',
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
               fontWeight: FontWeight.bold,
