@@ -84,7 +84,7 @@ class _CashedImageWidgetState extends State<CashedImageWidget> {
     setState(() {
       _imagePath = null;
       _thumbnailPath = null;
-      _isProcessing=false;
+      _isProcessing = false;
     });
     await Future.delayed(const Duration(milliseconds: 300));
     if (mounted) _processFile();

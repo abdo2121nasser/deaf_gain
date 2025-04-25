@@ -12,21 +12,18 @@ class HistoryScreen extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-
         Expanded(
           child: ListView.separated(
             padding: EdgeInsets.symmetric(vertical: k10V),
-               itemBuilder: (BuildContext context, int index)=> const HistoryItemWidget(),
-          separatorBuilder: (context, index) => SizedBox(height: k10V,),
+            itemBuilder: (BuildContext context, int index) =>
+                const HistoryItemWidget(),
+            separatorBuilder: (context, index) => SizedBox(
+              height: k10V,
+            ),
             itemCount: 20,
-
           ),
         )
       ],
     );
   }
 }
-
-
-
-
