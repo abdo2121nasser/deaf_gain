@@ -14,8 +14,8 @@ class TranslateScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => CameraCubit(),
-      child: Column(
+      create: (context) => CameraCubit()..initializeCamera(),
+      child: const Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           CameraFeedsContainerWidget(),

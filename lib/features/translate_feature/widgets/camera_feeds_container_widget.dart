@@ -7,29 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/utils/colors/colors.dart';
 import '../../../core/utils/values/app_size.dart';
 
-class CameraFeedsContainerWidget extends StatefulWidget {
+class CameraFeedsContainerWidget extends StatelessWidget {
   const CameraFeedsContainerWidget({super.key});
-
-  @override
-  State<CameraFeedsContainerWidget> createState() =>
-      _CameraFeedsContainerWidgetState();
-}
-
-class _CameraFeedsContainerWidgetState
-    extends State<CameraFeedsContainerWidget> {
-
-
-  @override
-  void initState() {
-    super.initState();
-    CameraCubit.get(context).initializeCamera();
-  }
-
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +20,7 @@ class _CameraFeedsContainerWidgetState
             .of(context)
             .size
             .height * 0.3,
-        color: kDarkBlueColor, // placeholder until camera ready
+        color: kBackgroundColor, // placeholder until camera ready
         child: BlocBuilder<CameraCubit, CameraState>(
           builder: (context, state) {
             if(state is LoadingState){
@@ -51,8 +30,6 @@ class _CameraFeedsContainerWidgetState
              return const Center(child: Text('لقد حدث قطاء ما حاول مره اخري!'));
             }
             else {
-
-              // return Icon(Icons.broadcast_on_home);
                return FittedBox(
                  fit: BoxFit.cover,
                  child:SizedBox(
