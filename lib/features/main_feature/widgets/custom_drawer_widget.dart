@@ -28,7 +28,9 @@ class CustomDrawerWidget extends StatelessWidget {
         AppRoute.router.push(AppRoute.settingScreen);
       }),
       ListTitleItemEntity(
-          text: 'دليل لغه الاشعاره', iconData: Icons.menu_book, onClick: () {}),
+          text: 'دليل لغه الاشعاره', iconData: Icons.menu_book, onClick: () {
+            AppRoute.router.push(AppRoute.guideScreen);
+      }),
       ListTitleItemEntity(
           text: 'النسخه المميزه', iconData: Icons.paid, onClick: () {
         PaymentCubit.get(context).makeStripePayment(amount: 50);

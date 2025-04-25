@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:deaf_gain/features/authentication_feature/screens/authentication_screen.dart';
 import 'package:deaf_gain/features/authentication_feature/screens/forget_password_screen.dart';
+import 'package:deaf_gain/features/guide_feature/screens/guide_screen.dart';
 import 'package:deaf_gain/features/main_feature/screens/main_screen.dart';
 import 'package:deaf_gain/features/profile_feature/screens/profile_screen.dart';
 import 'package:deaf_gain/features/setting_feature/screens/setting_screen.dart';
@@ -13,6 +14,7 @@ class AppRoute {
   static const homeScreen = '/home-screen';
   static const profileScreen = '/profile-screen';
   static const settingScreen = '/setting-screen';
+  static const guideScreen = '/guide-screen';
 
   static final router = GoRouter(initialLocation: homeScreen, routes: [
     GoRoute(
@@ -32,6 +34,9 @@ class AppRoute {
     ),  GoRoute(
       path: settingScreen,
       builder: (context, state) => SettingScreen(),
+    ), GoRoute(
+      path: guideScreen,
+      builder: (context, state) => GuideScreen(),
     ),
   ]);
 }
