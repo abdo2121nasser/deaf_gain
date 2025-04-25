@@ -1,5 +1,7 @@
+import 'package:deaf_gain/features/translate_feature/cubits/camera_cubit/camera_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../widgets/camera_feeds_container_widget.dart';
 import '../widgets/horizontal_options_list_widget.dart';
@@ -11,14 +13,17 @@ class TranslateScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        CameraFeedsContainerWidget(),
-        HorizontalOptionsListWidget(),
-        TranslatedTextContainerWidget(),
-        RecordButtonWidget()
-      ],
+    return BlocProvider(
+      create: (context) => CameraCubit(),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          CameraFeedsContainerWidget(),
+          HorizontalOptionsListWidget(),
+          TranslatedTextContainerWidget(),
+          RecordButtonWidget()
+        ],
+      ),
     );
   }
 }
