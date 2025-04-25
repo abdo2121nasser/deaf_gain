@@ -5,6 +5,8 @@ import 'package:path/path.dart' as path;
 import 'package:ffmpeg_kit_flutter/ffmpeg_kit.dart';
 import 'package:flutter/services.dart';
 
+import '../../../core/utils/values/app_size.dart';
+
 class CashedImageWidget extends StatefulWidget {
   final String link;
   const CashedImageWidget({super.key, required this.link});
@@ -97,12 +99,21 @@ class _CashedImageWidgetState extends State<CashedImageWidget> {
   @override
   Widget build(BuildContext context) {
     if (_thumbnailPath != null) {
-      return Image.file(File(_thumbnailPath!), fit: BoxFit.cover);
+      return _buildImage(File(_thumbnailPath!));
     }
     if (_imagePath != null) {
-      return Image.file(File(_imagePath!), fit: BoxFit.cover);
+      return _buildImage(File(_imagePath!));
     }
     return const Center(child: CircularProgressIndicator());
+  }
+
+  ClipRRect _buildImage(File file) {
+    return ClipRRect(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(k8R),
+          bottomLeft: Radius.circular(k8R),
+        ),
+        child: SizedBox.expand(child: Image.file(file, fit: BoxFit.cover)));
   }
 
   @override

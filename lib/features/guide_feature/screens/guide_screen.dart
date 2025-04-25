@@ -1,5 +1,4 @@
 import 'package:deaf_gain/core/utils/component/custom_app_bar_widget.dart';
-import 'package:deaf_gain/core/utils/values/app_size.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/demo_container_widget.dart';

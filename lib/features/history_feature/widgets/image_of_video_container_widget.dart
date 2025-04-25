@@ -10,28 +10,28 @@ class ImageOfVideoContainerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.bottomRight,
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(k8R),
-            bottomLeft: Radius.circular(k8R),
-          ), // or k20R
-          child: SizedBox(
-              width: constraints.maxWidth * 0.35,
-              height: constraints.maxHeight,
-              child: const CashedImageWidget(
-                  link:
-                      'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4')),
-        ),
-        Padding(
-          padding:  EdgeInsets.symmetric(horizontal: k5H,),
-          child: const Text('15:50',
-          style: TextStyle(backgroundColor: kBlackColor,color: kWhiteColor),
+    return  SizedBox(
+      width: constraints.maxWidth * 0.35,
+      height: constraints.maxHeight,
+      child: Stack(
+        alignment: Alignment.bottomRight,
+        children: [
+          const CashedImageWidget(
+            link: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
           ),
-        )
-      ],
+
+          // Timestamp overlay
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: k5H,),
+            child: const Text(
+              '15:5',
+              style:  TextStyle(
+                color: kWhiteColor,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
