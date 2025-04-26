@@ -13,7 +13,7 @@ final class SuccessState extends SignUpState {}
 final class ErrorState extends SignUpState {
   final ServerFailure error;
   ErrorState({required this.error}) {
-    debugPrint(error.message);
+    debugPrint(error.devMessage);
   }
 }
 final class SignUpLoadingState extends LoadingState {}

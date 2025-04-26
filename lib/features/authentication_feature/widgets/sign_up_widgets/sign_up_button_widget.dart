@@ -7,8 +7,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../configuration/routes.dart';
 import '../../../../core/utils/colors/colors.dart';
 import '../../../../core/utils/component/general_button_widget.dart';
+import '../../../../core/utils/component/toast_message_function.dart';
 import '../../../../core/utils/values/app_size.dart';
 
 class SignUpButtonWidget extends StatelessWidget {
@@ -22,7 +24,14 @@ class SignUpButtonWidget extends StatelessWidget {
         builder: (authenticationContext, authenticationCubitState) {
           var formState = authenticationCubitState.authenticationState.form
               as SignUpFormWidget;
-          return BlocBuilder<SignUpCubit, SignUpState>(
+          return BlocConsumer<SignUpCubit, SignUpState>(
+            listener: (BuildContext context, SignUpState state) {
+              if (state is SignUpSuccessState) {
+                AppRoute.router.pushReplacement(AppRoute.homeScreen);
+              } else if (state is SignUpErrorState) {
+                showToastMessage(message: state.error.userMessage);
+              }
+            },
             builder: (signUpContext, signUpState) {
               if (signUpState is LoadingState) {
                 return const Center(
@@ -32,7 +41,7 @@ class SignUpButtonWidget extends StatelessWidget {
                 return GeneralButtonWidget(
                     label: 'انشاء حساب',
                     function: () {
-                      if (!formState.validateForm()) {
+                      if (formState.validateForm()) {
                         SignUpCubit.get(authenticationContext).signUp();
                         // print(SignInModel(
                         //     email: formState.emailController.text,

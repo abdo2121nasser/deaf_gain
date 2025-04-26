@@ -26,7 +26,9 @@ class SignInCubit extends Cubit<SignInState> {
       if (error is DioException) {
         emit(SignInErrorState(error: ServerFailure.fromServer(error)));
       } else {
-        emit(SignInErrorState(error: ServerFailure("unknown error")));
+        emit(SignInErrorState(error: ServerFailure(devMessage: error.toString(),
+            userMessage: 'حدث خطاء ما غير معروف حاول مره اخري!'
+        )));
       }
     }
   }

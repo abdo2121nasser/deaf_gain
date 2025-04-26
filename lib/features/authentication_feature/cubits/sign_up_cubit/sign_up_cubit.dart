@@ -27,7 +27,9 @@ class SignUpCubit extends Cubit<SignUpState> {
       if (error is DioException) {
         emit(SignUpErrorState(error: ServerFailure.fromServer(error)));
       } else {
-        emit(SignUpErrorState(error: ServerFailure("unknown error")));
+        emit(SignUpErrorState(error: ServerFailure(devMessage: error.toString(),
+        userMessage: 'حدث خطاء ما غير معروف حاول مره اخري!'
+        )));
       }
     }
   }
