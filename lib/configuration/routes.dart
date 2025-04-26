@@ -16,7 +16,7 @@ class AppRoute {
   static const settingScreen = '/setting-screen';
   static const guideScreen = '/guide-screen';
 
-  static final router = GoRouter(initialLocation: homeScreen, routes: [
+  static final router = GoRouter(initialLocation: authenticationScreen, routes: [
     GoRoute(
       path: authenticationScreen,
       builder: (context, state) => AuthenticationScreen(),

@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:deaf_gain/core/services/dio_service.dart';
 import 'package:deaf_gain/root/app_root.dart';
 
 
@@ -14,6 +15,7 @@ import 'core/services/stripe_payment_services/service/stripe_dio_service.dart';
 Future<void> main() async {
   Bloc.observer = MyBlocObserver();
   StripeDioHelper.init();
+  DioHelper.init(baseUrl: 'https://www.google.com/');
   Stripe.publishableKey = ApiKeysConst.stripePublishKey;
 
   WidgetsFlutterBinding.ensureInitialized();
