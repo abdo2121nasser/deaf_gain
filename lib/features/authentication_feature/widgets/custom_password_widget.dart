@@ -22,7 +22,7 @@ class CustomPasswordWidget extends StatefulWidget {
 }
 
 class _PasswordFieldState extends State<CustomPasswordWidget> {
-  final ValueNotifier<bool> _obscureText = ValueNotifier<bool>(true);
+  final ValueNotifier<bool> _obscureText = ValueNotifier<bool>(false);
 
   @override
   Widget build(BuildContext context) {
