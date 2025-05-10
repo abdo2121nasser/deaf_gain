@@ -15,11 +15,32 @@ class ValidatorService {
     if (value == null || value.isEmpty) {
       return 'من فضلك أدخل كلمة المرور';
     }
-    if (value.length < 7) {
+
+    // Minimum length 8
+    if (value.length < 8) {
       return 'يجب أن تكون كلمة المرور مكونة من 8 أحرف على الأقل';
     }
-    return null;
-  }
+
+    // At least one uppercase
+    if (!RegExp(r'[A-Z]').hasMatch(value)) {
+      return 'يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل';
+    }
+
+    // At least one lowercase
+    if (!RegExp(r'[a-z]').hasMatch(value)) {
+      return 'يجب أن تحتوي كلمة المرور على حرف صغير واحد على الأقل';
+    }
+
+    // At least one symbol (non-alphanumeric)
+    if (!RegExp(r'[!@#\$%^&*(),.?":{}|<>_\-\\\/~`+=;\[\]]').hasMatch(value)) {
+      return 'يجب أن تحتوي كلمة المرور على رمز واحد على الأقل ';
+    }
+
+
+  // All checks passed
+  return null;
+}
+
 
   static String? validateConfirmPassword(String? value, String originalPassword) {
     if (value == null || value.isEmpty) {

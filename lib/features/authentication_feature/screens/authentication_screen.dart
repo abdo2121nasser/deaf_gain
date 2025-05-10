@@ -10,7 +10,6 @@ import '../widgets/custom_switch_widget.dart';
 class AuthenticationScreen extends StatelessWidget {
   const AuthenticationScreen({super.key});
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,26 +18,42 @@ class AuthenticationScreen extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: k20H, vertical: k10V),
         child: BlocProvider(
           create: (context) => AuthenticationSwitchCubit(),
-          child: BlocBuilder<AuthenticationSwitchCubit, AuthenticationSwitchState>(
-  builder: (context, state) {
-    return Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              state.authenticationState.title,
-               CustomSwitchWidget(
-                isSignIn: state.isSignInState,
-              ),
-              state.authenticationState.form,
-              state.authenticationState.button
-            ],
-          );
-  },
-),
+          child:
+          BlocBuilder<AuthenticationSwitchCubit, AuthenticationSwitchState>(
+            builder: (context, state) {
+              return SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    SizedBox(
+                      height: k20V,
+                    ),
+                    state.authenticationState.title,
+                    SizedBox(
+                      height: k20V,
+                    ),
+                    CustomSwitchWidget(
+                      isSignIn: state.isSignInState,
+                    ),
+                    SizedBox(
+                      height: k20V,
+                    ),
+                    state.authenticationState.form,
+                    SizedBox(
+                      height: k20V,
+                    ),
+                    state.authenticationState.button,
+                    SizedBox(
+                      height: k20V,
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
         ),
       ),
     );
   }
-
-
 }

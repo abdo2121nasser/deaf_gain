@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:deaf_gain/core/services/dio_service.dart';
 import 'package:deaf_gain/core/services/failure_service.dart';
+import 'package:deaf_gain/core/utils/strings/strings.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,7 +17,7 @@ class SignInCubit extends Cubit<SignInState> {
     try {
       emit(SignInLoadingState());
       Response response =
-          await DioHelper.postData(endPoint: '', data: FormData());
+          await DioHelper.postData(endPoint: '', map: {});
       if (response.statusCode != null &&
           response.statusCode! >= 200 &&
           response.statusCode! < 300) {
@@ -27,7 +28,7 @@ class SignInCubit extends Cubit<SignInState> {
         emit(SignInErrorState(error: ServerFailure.fromServer(error)));
       } else {
         emit(SignInErrorState(error: ServerFailure(devMessage: error.toString(),
-            userMessage: 'حدث خطاء ما غير معروف حاول مره اخري!'
+            userMessage:kUnKnownProblemMessage
         )));
       }
     }

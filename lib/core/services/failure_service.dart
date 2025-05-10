@@ -52,6 +52,7 @@ class ServerFailure extends Failure {
           userMessage: "تم إلغاء الطلب",
         );
       case DioExceptionType.connectionError:
+
         return ServerFailure(
           devMessage: "Connection Error",
           userMessage: "تعذر الاتصال بالإنترنت، تحقق من الشبكة",

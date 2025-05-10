@@ -2,6 +2,8 @@ import 'package:deaf_gain/features/authentication_feature/cubits/authentication_
 import 'package:deaf_gain/features/authentication_feature/cubits/authentication_switch_cubit/authentication_switch_cubit.dart';
 import 'package:deaf_gain/features/authentication_feature/cubits/sign_up_cubit/sign_up_cubit.dart';
 import 'package:deaf_gain/features/authentication_feature/models/sign_in_model.dart';
+import 'package:deaf_gain/features/authentication_feature/models/sign_up_model.dart';
+import 'package:deaf_gain/features/authentication_feature/repositories/store_user_repository.dart';
 import 'package:deaf_gain/features/authentication_feature/widgets/sign_up_widgets/sign_up_form_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -25,8 +27,9 @@ class SignUpButtonWidget extends StatelessWidget {
           var formState = authenticationCubitState.authenticationState.form
               as SignUpFormWidget;
           return BlocConsumer<SignUpCubit, SignUpState>(
-            listener: (BuildContext context, SignUpState state) {
+            listener: (BuildContext context, SignUpState state) async {
               if (state is SignUpSuccessState) {
+                await StoreUserByHive().storeUser(userEntity: state.userEntity);
                 AppRoute.router.pushReplacement(AppRoute.homeScreen);
               } else if (state is SignUpErrorState) {
                 showToastMessage(message: state.error.userMessage);
@@ -42,11 +45,16 @@ class SignUpButtonWidget extends StatelessWidget {
                     label: 'انشاء حساب',
                     function: () {
                       if (formState.validateForm()) {
-                        SignUpCubit.get(authenticationContext).signUp();
-                        // print(SignInModel(
-                        //     email: formState.emailController.text,
-                        //     password: formState.passwordController.text)
-                        //     .toJson());
+                        SignUpCubit.get(authenticationContext).signUp(
+                            signUpModel: SignUpModel(
+                                birthday: DateTime.now(),
+                                firstName: formState.firstNameController.text,
+                                lastName: formState.lastNameController.text,
+                                password: formState.passwordController.text,
+                                phoneNumber: formState.phoneController.text,
+                                confirmPassword:
+                                    formState.passwordController.text,
+                                email: formState.emailController.text));
                       }
                     },
                     size: Size(double.maxFinite, k20V),

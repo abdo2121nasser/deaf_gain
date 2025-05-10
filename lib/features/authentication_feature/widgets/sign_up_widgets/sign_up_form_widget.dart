@@ -8,11 +8,16 @@ import '../../../../core/utils/component/custom_full_input_block.dart';
 import '../../../../core/utils/values/app_size.dart';
 import '../../../../core/utils/values/font_size.dart';
 import '../custom_email_widget.dart';
+import 'custom_name_widget.dart';
+import 'custom_phone_widget.dart';
 
 class SignUpFormWidget extends StatelessWidget {
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController firstNameController = TextEditingController();
+  final TextEditingController lastNameController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
   SignUpFormWidget({
@@ -25,8 +30,29 @@ class SignUpFormWidget extends StatelessWidget {
         key: _globalKey,
         child: Column(
           children: [
-
-            CustomEmailWidget(controller: emailController,),
+            CustomEmailWidget(
+              controller: emailController,
+            ),
+            SizedBox(
+              height: k14V,
+            ),
+            CustomNameWidget(
+              controller: firstNameController,
+              label: 'ادخل اسمك الاول',
+            ),
+            SizedBox(
+              height: k14V,
+            ),
+            CustomNameWidget(
+              controller: lastNameController,
+              label: 'ادخل اسم العائله',
+            ),
+            SizedBox(
+              height: k14V,
+            ),
+            CustomPhoneWidget(
+              controller: phoneController,
+            ),
             SizedBox(
               height: k14V,
             ),

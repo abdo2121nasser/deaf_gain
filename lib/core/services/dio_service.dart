@@ -3,9 +3,9 @@ import 'package:dio/dio.dart';
 class DioHelper {
   static Dio? dio;
 
-  static init({required String baseUrl}) {
+  static init() {
     dio = Dio(BaseOptions(
-      baseUrl: baseUrl,
+      baseUrl: 'http://192.168.1.9:5256/api/',
       receiveDataWhenStatusError: true,
     ));
   }
@@ -24,17 +24,14 @@ class DioHelper {
   static Future<Response> postData(
       {required String endPoint,
       Map<String, dynamic>? query,
-      required FormData data,
+      required Map<String,dynamic> map,
       String? token,
-      String? contentType
-
-
-      }) {
+      String? contentType}) {
     dio!.options.headers = {
-      'content-type':'application/json',
+      'content-type': 'application/json',
     };
     dio!.options.contentType = contentType;
 
-    return dio!.post(endPoint, queryParameters: query, data: data);
+    return dio!.post(endPoint, queryParameters: query, data: map);
   }
 }
