@@ -7,7 +7,11 @@ final class SignInInitial extends SignInState {}
 
 final class LoadingState extends SignInState {}
 
-final class SuccessState extends SignInState {}
+final class SuccessState extends SignInState {
+  final UserEntity userEntity;
+
+  SuccessState({required this.userEntity});
+}
 
 final class ErrorState extends SignInState {
   final ServerFailure error;
@@ -16,7 +20,9 @@ final class ErrorState extends SignInState {
   }
 }
 final class SignInLoadingState extends LoadingState {}
-final class SignInSuccessState extends SuccessState {}
+final class SignInSuccessState extends SuccessState {
+  SignInSuccessState({required super.userEntity});
+}
 final class SignInErrorState extends ErrorState {
   SignInErrorState({required super.error});
 }

@@ -2,6 +2,7 @@ import 'package:deaf_gain/core/utils/component/toast_message_function.dart';
 import 'package:deaf_gain/features/authentication_feature/cubits/authentication_switch_cubit/authentication_switch_cubit.dart';
 import 'package:deaf_gain/features/authentication_feature/cubits/authentication_switch_cubit/authentication_switch_cubit.dart';
 import 'package:deaf_gain/features/authentication_feature/cubits/sign_in_cubit/sign_in_cubit.dart';
+import 'package:deaf_gain/features/authentication_feature/repositories/store_user_repository.dart';
 import 'package:deaf_gain/features/authentication_feature/widgets/sign_in_widgets/sign_in_form_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,8 +25,9 @@ class SignInButtonWidget extends StatelessWidget {
           var formState = authenticationCubitState.authenticationState.form
               as SignInFormWidget;
           return BlocConsumer<SignInCubit, SignInState>(
-            listener: (BuildContext context, SignInState state) {
+            listener: (BuildContext context, SignInState state) async {
               if (state is SignInSuccessState) {
+               await StoreUserByHive().storeUser(userEntity: state.userEntity);
                 AppRoute.router.pushReplacement(AppRoute.homeScreen);
               } else if (state is SignInErrorState) {
                 showToastMessage(message: state.error.userMessage);
@@ -41,12 +43,10 @@ class SignInButtonWidget extends StatelessWidget {
                     label: 'تسجيل الدخول',
                     function: () {
                       if (formState.validateForm()) {
-                        SignInCubit.get(authenticationContext).signIn();
-
-                        print(SignInModel(
+                        SignInCubit.get(authenticationContext).signIn(
+                            signInModel: SignInModel(
                                 email: formState.emailController.text,
-                                password: formState.passwordController.text)
-                            .toJson());
+                                password: formState.passwordController.text));
                       }
                     },
                     size: Size(double.maxFinite, k20V),
