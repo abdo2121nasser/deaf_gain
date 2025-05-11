@@ -5,21 +5,30 @@ part 'user_entity.g.dart';
 @HiveType(typeId: 0)
 class UserEntity extends HiveObject {
   @HiveField(0)
-  String? lastName;
+  final String ?lastName;
   @HiveField(1)
-  String? firstName;
-
+  final String? firstName;
   @HiveField(2)
-  String? id;
-
+  final String? id;
   @HiveField(3)
-  String? email;
+  final String? email;
+  @HiveField(4)
+  final String? token;
+  @HiveField(5)
+  final String? expireDate;
+  @HiveField(6)
+  final String? avatarUrl;
+  @HiveField(7)
+  final String? phoneNumber;
 
-  UserEntity({
-    required this.firstName,
-    required this.lastName,
-    required this.id,
-    required this.email,
-  });
-
+  UserEntity(
+      {required this.firstName,
+      required this.lastName,
+      required this.id,
+      required this.email,
+      required this.token,
+      required this.expireDate,
+        required this.avatarUrl,
+        required this.phoneNumber
+      });
 }

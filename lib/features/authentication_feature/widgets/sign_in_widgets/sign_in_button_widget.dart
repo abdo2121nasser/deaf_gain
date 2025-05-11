@@ -27,7 +27,7 @@ class SignInButtonWidget extends StatelessWidget {
           return BlocConsumer<SignInCubit, SignInState>(
             listener: (BuildContext context, SignInState state) async {
               if (state is SignInSuccessState) {
-               await StoreUserByHive().storeUser(userEntity: state.userEntity);
+                await StoreUserByHive().storeUser(userEntity: state.userEntity);
                 AppRoute.router.pushReplacement(AppRoute.homeScreen);
               } else if (state is SignInErrorState) {
                 showToastMessage(message: state.error.userMessage);
