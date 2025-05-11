@@ -27,25 +27,6 @@ class SignInFormWidget extends StatelessWidget {
               height: k14V,
             ),
             CustomPasswordWidget(controller: passwordController),
-            SizedBox(
-              height: k5V,
-            ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: GestureDetector(
-                onTap: () {
-                  AppRoute.router.push(AppRoute.forgetPasswordScreen);
-                },
-                child: Text(
-                  'هل نسيت كلمه المرور؟',
-                  style: TextStyle(
-                      decoration: TextDecoration.underline,
-                      fontSize: k16Sp,
-                      fontWeight: FontWeight.bold,
-                      color: kDarkBlueColor),
-                ),
-              ),
-            ),
           ],
         ));
   }
