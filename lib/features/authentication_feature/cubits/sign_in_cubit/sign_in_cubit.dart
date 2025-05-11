@@ -39,7 +39,3 @@ class SignInCubit extends Cubit<SignInState> {
     }
   }
 }
-// void printFullText(String text) {
-//   final pattern = RegExp('.{1,800}'); // 800 is the chunk size
-//   pattern.allMatches(text).forEach((match) => print(match.group(0)));
-// }

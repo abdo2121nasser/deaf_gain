@@ -11,7 +11,8 @@ class SignUpModel extends SignUpEntity {
     required super.email,
   });
 
-  factory SignUpModel.fromJson(Map<dynamic, dynamic> json) => SignUpModel(
+  factory SignUpModel.fromJson(Map<String, dynamic> json) {
+    return SignUpModel(
         birthday: DateTime.parse(json["birthday"]),
         firstName: json["firstName"],
         lastName: json["lastName"],
@@ -20,6 +21,7 @@ class SignUpModel extends SignUpEntity {
         confirmPassword: json["confirmPassword"],
         email: json["email"],
       );
+  }
 
   Map<String, dynamic> toJson() => {
         "birthday":

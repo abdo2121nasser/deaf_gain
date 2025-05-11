@@ -13,14 +13,14 @@ class UserModel extends UserEntity {
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
-        lastName: json['lastName'],
-        firstName: json['firstName'],
-        id: json['id'],
-        email: json['email'],
+        lastName: json['user']['lastName'],
+        firstName: json['user']['firstName'],
+        id: json['user']['id'],
+        email: json['user']['email'],
         token: json['token'],
         expireDate: json['expiration'],
-        avatarUrl: json['profilePictureUrl'],
-        phoneNumber: json['phoneNumber']);
+        avatarUrl: json['user']['profilePictureUrl'],
+        phoneNumber: json['user']['phoneNumber']);
   }
 
   Map<String, dynamic> toJson() {
@@ -34,3 +34,7 @@ class UserModel extends UserEntity {
     };
   }
 }
+// void printFullText(String text) {
+//   final pattern = RegExp('.{1,800}'); // 800 is the chunk size
+//   pattern.allMatches(text).forEach((match) => print(match.group(0)));
+// }

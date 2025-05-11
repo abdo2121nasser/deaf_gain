@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:deaf_gain/features/authentication_feature/repositories/get_user_repository.dart';
+import 'package:deaf_gain/features/profile_feature/repositories/get_user_repository.dart';
 import 'package:deaf_gain/features/authentication_feature/screens/authentication_screen.dart';
 import 'package:deaf_gain/features/authentication_feature/screens/forget_password_screen.dart';
 import 'package:deaf_gain/features/guide_feature/screens/guide_screen.dart';
