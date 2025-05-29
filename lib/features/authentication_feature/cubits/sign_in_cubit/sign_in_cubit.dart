@@ -28,6 +28,8 @@ class SignInCubit extends Cubit<SignInState> {
         emit(SignInSuccessState(userEntity: UserModel.fromJson(response.data)));
       }
     } catch (error) {
+      print('------------------');
+      print(error);
       if (error is DioException) {
         emit(SignInErrorState(error: ServerFailure.fromServer(error)));
       } else {

@@ -40,6 +40,7 @@ class ProfileScreenBodyWidget extends StatelessWidget {
                       SizedBox(height: MediaQuery.maybeOf(context)!.size.height*0.07),
                       UpdateProfileDataButtonWidget(
                         validateData: _validateDate,
+                        userEntity: state.userEntity,
                       ),
                       SizedBox(height: k10V),
                     ],

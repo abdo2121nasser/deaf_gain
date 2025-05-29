@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/utils/component/custom_app_bar_widget.dart';
-import '../../profile_feature/repositories/get_user_repository.dart';
+import '../repositories/get_user_repository.dart';
 import '../cubits/bottom_navigation_bar_cubit/bottom_navigation_bar_cubit.dart';
 import '../cubits/payment_cubit/payment_cubit.dart';
 import '../widgets/custom_bottom_navigation_bar_widget.dart';

@@ -5,7 +5,8 @@ class DioHelper {
 
   static init() {
     dio = Dio(BaseOptions(
-      baseUrl: 'http://192.168.1.5:5256/api/',
+      baseUrl: 'http://192.168.1.9:5256/api/',
+      //edit the ip address in the application launcher in api in the 2 sections
       receiveDataWhenStatusError: true,
     ));
   }
@@ -34,4 +35,19 @@ class DioHelper {
 
     return dio!.post(endPoint, queryParameters: query, data: map);
   }
+
+  static Future<Response> putData({
+    required String url,
+    Map<String, dynamic>? query,
+    required Map<String, dynamic> data,
+    String? token,
+  }) async {
+
+    dio!.options.headers = {
+      'Authorization':'Bearer $token',
+    };
+    return dio!.put(url, queryParameters: query, data: data);
+
+  }
+
 }

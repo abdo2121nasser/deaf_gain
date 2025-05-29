@@ -12,10 +12,10 @@ final class ErrorState extends ProfileState {
 
 }
 
-final class GetUserDataLoadingState extends LoadingState {}
-final class GetUserDataSuccessState extends ProfileState {
+final class UpdateUserDataLoadingState extends LoadingState {}
+final class UpdateUserDataSuccessState extends ProfileState {
   final UserEntity userEntity;
 
-  GetUserDataSuccessState({required this.userEntity});
+  UpdateUserDataSuccessState({required this.userEntity});
 }
-final class GetUserDataErrorState extends ErrorState {}
+final class UpdateUserDataErrorState extends ErrorState {}

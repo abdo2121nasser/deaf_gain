@@ -13,6 +13,7 @@ class StoreUserByHive implements StoreUserRepository {
   Future<void> storeUser({required UserEntity userEntity}) async {
     try{
       final box = Hive.box(kUsersBox);
+      // await box.clear();
       await box.put(kUser, userEntity);
     }catch(error){
       debugPrint(error.toString());
