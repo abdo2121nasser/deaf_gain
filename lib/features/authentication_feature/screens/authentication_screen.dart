@@ -21,31 +21,32 @@ class AuthenticationScreen extends StatelessWidget {
           child:
           BlocBuilder<AuthenticationSwitchCubit, AuthenticationSwitchState>(
             builder: (context, state) {
+              var h=MediaQuery.maybeOf(context)!.size.height;
               return SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     SizedBox(
-                      height: k20V,
+                      height: h*0.07,
                     ),
                     state.authenticationState.title,
                     SizedBox(
-                      height: k20V,
+                      height:  h*0.07,
                     ),
                     CustomSwitchWidget(
                       isSignIn: state.isSignInState,
                     ),
                     SizedBox(
-                      height: k20V,
+                      height:  h*0.04,
                     ),
                     state.authenticationState.form,
                     SizedBox(
-                      height: k20V,
+                      height:  h*0.07,
                     ),
                     state.authenticationState.button,
                     SizedBox(
-                      height: k20V,
+                      height:  h*0.04,
                     ),
                   ],
                 ),

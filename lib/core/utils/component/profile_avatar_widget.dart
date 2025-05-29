@@ -11,18 +11,18 @@ class ProfileAvatarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
-      backgroundColor: kWhiteColor,
-      backgroundImage: userAvatar != null && userAvatar.isNotEmpty
+      backgroundColor: kDarkBlueColor,
+      backgroundImage: userAvatar.isNotEmpty
           ? NetworkImage(userAvatar)
           : null,
-      child: userAvatar == null || userAvatar.isEmpty
+      radius: k50R,
+      child: userAvatar.isEmpty
           ? Icon(
               Icons.person,
               size: k50R,
-              color: Colors.grey,
+              color: kWhiteColor,
             )
           : null,
-      radius: k50R,
 
     );
   }

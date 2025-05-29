@@ -17,11 +17,11 @@ class _SettingScreenBodyWidgetState extends State<SettingScreenBodyWidget> {
   @override
   Widget build(BuildContext context) {
     final List<ListTitleItemEntity> items = [
-      ListTitleItemEntity(
-        text: 'الاشعارات',
-        iconData: Icons.notifications,
-        onClick: () {},
-      ),
+      // ListTitleItemEntity(
+      //   text: 'الاشعارات',
+      //   iconData: Icons.notifications,
+      //   onClick: () {},
+      // ),
       ListTitleItemEntity(
         text: themeNotifier.value == ThemeMode.light?'الوضع المظلم': "الوضع المضىء",
         iconData: themeNotifier.value == ThemeMode.light
