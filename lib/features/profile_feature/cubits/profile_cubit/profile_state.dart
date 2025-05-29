@@ -3,7 +3,10 @@ part of 'profile_cubit.dart';
 @immutable
 sealed class ProfileState {}
 
-final class ProfileInitial extends ProfileState {}
+final class ProfileInitial extends ProfileState {
+  UserEntity userEntity;
+  ProfileInitial({required this.userEntity});
+}
 final class LoadingState extends ProfileState {}
 final class ErrorState extends ProfileState {
 

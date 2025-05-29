@@ -9,10 +9,10 @@ import '../../../features/profile_feature/widgets/custom_image_picker_bottom_she
 class CustomProfileAvatarWidget extends StatelessWidget {
   const CustomProfileAvatarWidget({
     super.key,
-    this.imageUrl,
+    required this.imageUrl,
   });
 
-  final String? imageUrl;
+  final String imageUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +20,10 @@ class CustomProfileAvatarWidget extends StatelessWidget {
       children: [
         InkWell(
           onTap: () {
-            _showImagePickerBottomSheet(
-                context: context,
-                onCameraTap: ImageCubit.get(context).pickImageFromCamera,
-                onGalleryTap: ImageCubit.get(context).pickImageFromGallery);
+            // _showImagePickerBottomSheet(
+            //     context: context,
+            //     onCameraTap: ImageCubit.get(context).pickImageFromCamera,
+            //     onGalleryTap: ImageCubit.get(context).pickImageFromGallery);
           },
           child: CircleAvatar(
             radius: MediaQuery.of(context).size.height * 0.08,
@@ -34,17 +34,20 @@ class CustomProfileAvatarWidget extends StatelessWidget {
                   radius: MediaQuery.of(context).size.height * 0.07,
                   backgroundColor: kDarkBlueColor,
                   backgroundImage: state.image != null
-                      ? FileImage(state.image!)
-                      : (imageUrl != null
-                          ? NetworkImage(imageUrl!)
-                          : null), // Use backgroundImage for correct fitting
-                  child: imageUrl == null && state.image == null
+                      ? FileImage(
+                          state.image!)
+                      : (imageUrl.isNotEmpty
+                          ? NetworkImage(
+                              imageUrl)
+                          : null),
+                  child: imageUrl.isEmpty && state.image == null
                       ? Icon(
                           Icons.person,
                           color: kWhiteColor,
-                          size: MediaQuery.of(context).size.height * 0.07,
+                          size: MediaQuery.of(context).size.height *
+                              0.07, // Keep the size consistent
                         )
-                      : null, // Remove direct Image.network
+                      : null, // Only show the icon if no image source is available
                 );
               },
             ),

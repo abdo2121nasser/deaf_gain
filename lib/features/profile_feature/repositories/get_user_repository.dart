@@ -10,16 +10,16 @@ import '../../authentication_feature/entities/user_entity.dart';
 import '../../authentication_feature/models/user_model.dart';
 
 abstract class GetUserRepository {
-  Future<UserEntity?> getUser();
+  UserEntity? getUser();
 }
 
 class GetUserFromHive implements GetUserRepository {
   @override
-  Future<UserEntity?> getUser() async {
+  UserEntity? getUser()  {
     try {
       var box = Hive.box(kUsersBox);
       UserEntity? userEntity =
-          await box.get(kUser, defaultValue: []);
+           box.get(kUser, defaultValue: []);
       return userEntity;
     }  catch (error) {
       debugPrint(error.toString());

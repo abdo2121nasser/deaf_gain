@@ -7,17 +7,17 @@ import 'package:meta/meta.dart';
 part 'profile_state.dart';
 
 class ProfileCubit extends Cubit<ProfileState> {
-  ProfileCubit() : super(ProfileInitial());
+  ProfileCubit({required UserEntity userEntity}) : super(ProfileInitial(userEntity: userEntity));
   static ProfileCubit get(context) => BlocProvider.of(context);
 
-  getUserData() async {
-    emit(GetUserDataLoadingState());
-    UserEntity? userEntity = await GetUserFromHive().getUser();
-    if (userEntity != null) {
-      print(userEntity.token);
-      emit(GetUserDataSuccessState(userEntity: userEntity));
-    } else {
-      emit(GetUserDataErrorState());
-    }
-  }
+  // getUserData() async {
+  //   emit(GetUserDataLoadingState());
+  //   UserEntity? userEntity = await GetUserFromHive().getUser();
+  //   if (userEntity != null) {
+  //     // print(userEntity.token);
+  //     emit(GetUserDataSuccessState(userEntity: userEntity));
+  //   } else {
+  //     emit(GetUserDataErrorState());
+  //   }
+  // }
 }

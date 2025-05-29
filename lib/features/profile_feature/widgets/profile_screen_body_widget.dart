@@ -4,7 +4,7 @@ import 'package:deaf_gain/features/profile_feature/widgets/profile_form_widget.d
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/utils/values/app_size.dart';
-import '../../main_feature/widgets/update_profile_data_button_widget.dart';
+import 'update_profile_data_button_widget.dart';
 import 'custom_profile_avatar_widget.dart';
 
 class ProfileScreenBodyWidget extends StatelessWidget {
@@ -27,17 +27,17 @@ class ProfileScreenBodyWidget extends StatelessWidget {
                     child: CircularProgressIndicator(),
                   ),
                 );
-              } else if (state is GetUserDataSuccessState) {
+              } else if ( state is ProfileInitial) {
                 return SliverToBoxAdapter(
                   child: Column(
                     children: [
                       SizedBox(height: k10V),
-                      const CustomProfileAvatarWidget(),
+                       CustomProfileAvatarWidget(imageUrl: state.userEntity.avatarUrl.toString(),),
                       ProfileFormWidget(
                         globalKey: _globalKey,
                         userEntity: state.userEntity,
                       ),
-                      SizedBox(height: k16V),
+                      SizedBox(height: MediaQuery.maybeOf(context)!.size.height*0.07),
                       UpdateProfileDataButtonWidget(
                         validateData: _validateDate,
                       ),

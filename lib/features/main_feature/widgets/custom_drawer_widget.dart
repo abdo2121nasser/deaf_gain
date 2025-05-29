@@ -10,18 +10,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/utils/component/profile_avatar_widget.dart';
+import '../../authentication_feature/entities/user_entity.dart';
 import '../entities/List_title_item_entity.dart';
 import 'drawer_list_view_widget.dart';
 
 class CustomDrawerWidget extends StatelessWidget {
-  const CustomDrawerWidget({super.key});
+  UserEntity  userEntity ;
+
+   CustomDrawerWidget({super.key,required this.userEntity});
 
 
   @override
   Widget build(BuildContext context) {
     final List<ListTitleItemEntity> _items = [
       ListTitleItemEntity(text: 'الحساب', iconData: Icons.person, onClick: () {
-        AppRoute.router.push(AppRoute.profileScreen);
+        AppRoute.router.push(AppRoute.profileScreen,extra: userEntity);
       }),
       ListTitleItemEntity(
           text: 'الاعدادات', iconData: Icons.settings, onClick: () {
@@ -42,10 +45,10 @@ class CustomDrawerWidget extends StatelessWidget {
         children: [
           SizedBox(height: k16V,),
 
-          const ProfileAvatarWidget(),
+           ProfileAvatarWidget( userAvatar: userEntity.avatarUrl.toString(),),
           SizedBox(height: k5V,),
           Text(
-            'محمد احمد',
+            userEntity.firstName.toString(),
             style: TextStyle(
               fontSize: k18Sp,
               color: kDarkBlueColor,
