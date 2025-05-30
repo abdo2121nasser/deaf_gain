@@ -6,9 +6,11 @@ import 'package:deaf_gain/features/profile_feature/widgets/profile_screen_body_w
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../main_feature/entities/extra_entity.dart';
+
 class ProfileScreen extends StatelessWidget {
-  final UserEntity userEntity;
-  const ProfileScreen({super.key,required this.userEntity});
+  final ExtraDataEntity extraEntity;
+  const ProfileScreen({super.key, required this.extraEntity});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class ProfileScreen extends StatelessWidget {
       body: MultiBlocProvider(
         providers: [
           BlocProvider(create: (context) => ImageCubit()),
-          BlocProvider(create: (context) => ProfileCubit(userEntity: userEntity)),
+          BlocProvider.value(value: extraEntity.profileCubit..getUserData()),
         ],
         child: ProfileScreenBodyWidget(),
       ),

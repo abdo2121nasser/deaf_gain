@@ -5,9 +5,10 @@ class DioHelper {
 
   static init() {
     dio = Dio(BaseOptions(
-      baseUrl: 'http://192.168.1.9:5256/api/',
-      //edit the ip address in the application launcher in api in the 2 sections
+      baseUrl: 'http://192.168.1.10:5256/api/',
+      //dotnet run --urls "http://0.0.0.0:5256"
       receiveDataWhenStatusError: true,
+
     ));
   }
 

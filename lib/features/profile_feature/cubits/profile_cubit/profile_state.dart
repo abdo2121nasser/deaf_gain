@@ -4,13 +4,19 @@ part of 'profile_cubit.dart';
 sealed class ProfileState {}
 
 final class ProfileInitial extends ProfileState {
-  UserEntity userEntity;
-  ProfileInitial({required this.userEntity});
 }
 final class LoadingState extends ProfileState {}
 final class ErrorState extends ProfileState {
 
 }
+
+final class GetUserDataLoadingState extends LoadingState {}
+final class GetUserDataSuccessState extends ProfileState {
+  final UserEntity userEntity;
+
+  GetUserDataSuccessState({required this.userEntity});
+}
+final class GetUserDataErrorState extends ErrorState {}
 
 final class UpdateUserDataLoadingState extends LoadingState {}
 final class UpdateUserDataSuccessState extends ProfileState {

@@ -42,11 +42,16 @@ class SignInButtonWidget extends StatelessWidget {
                 return GeneralButtonWidget(
                     label: 'تسجيل الدخول',
                     function: () {
-                      if (formState.validateForm()) {
+                      if (formState.validateForm()||true) {
                         SignInCubit.get(authenticationContext).signIn(
                             signInModel: SignInModel(
                                 email: formState.emailController.text,
-                                password: formState.passwordController.text));
+                                password: formState.passwordController.text
+                              // email: 'admin@deafassistant.com',
+                              // password: 'Admin@123456'
+
+                            ));
+                        //todo undo the comments
                       }
                     },
                     size: Size(double.maxFinite, k20V),

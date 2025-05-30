@@ -12,7 +12,7 @@ class CustomProfileAvatarWidget extends StatelessWidget {
     required this.imageUrl,
   });
 
-  final String imageUrl;
+  final String? imageUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -36,11 +36,10 @@ class CustomProfileAvatarWidget extends StatelessWidget {
                   backgroundImage: state.image != null
                       ? FileImage(
                           state.image!)
-                      : (imageUrl.isNotEmpty
-                          ? NetworkImage(
-                              imageUrl)
-                          : null),
-                  child: imageUrl.isEmpty && state.image == null
+                      : (imageUrl != null
+                      ? NetworkImage(imageUrl!)
+                      : null),
+                  child: (imageUrl == null ) && state.image == null
                       ? Icon(
                           Icons.person,
                           color: kWhiteColor,

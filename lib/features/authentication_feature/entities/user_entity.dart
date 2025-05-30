@@ -20,6 +20,8 @@ class UserEntity extends HiveObject {
   final String? avatarUrl;
   @HiveField(7)
   final String? phoneNumber;
+  @HiveField(8)
+   DateTime? subscriptionExpireDate;
 
   UserEntity(
       {required this.firstName,
@@ -29,6 +31,7 @@ class UserEntity extends HiveObject {
       required this.token,
       required this.expireDate,
         required this.avatarUrl,
-        required this.phoneNumber
+        required this.phoneNumber,
+        this.subscriptionExpireDate
       });
 }

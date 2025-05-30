@@ -10,6 +10,8 @@ import 'package:deaf_gain/features/profile_feature/screens/profile_screen.dart';
 import 'package:deaf_gain/features/setting_feature/screens/setting_screen.dart';
 import 'package:go_router/go_router.dart';
 
+import '../features/main_feature/entities/extra_entity.dart';
+
 class AppRoute {
   static const authenticationScreen = '/authentication-screen';
   static const forgetPasswordScreen = '/forget-password-screen';
@@ -38,9 +40,9 @@ class AppRoute {
           path: profileScreen,
 
           builder: (context, state) {
-            final UserEntity userEntity = state.extra as UserEntity;
+            final ExtraDataEntity extraEntity = state.extra as ExtraDataEntity;
 
-            return ProfileScreen(userEntity: userEntity,);
+            return ProfileScreen(extraEntity: extraEntity,);
           },
         ),
         GoRoute(

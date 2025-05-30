@@ -43,6 +43,8 @@ class _ProfileFormWidgetState extends State<ProfileFormWidget> {
 
           SizedBox(height: k10V),
           ProfileTitleWidget(userEntity: widget.userEntity,),
+          SizedBox(height: k10V),
+
           CustomFullInputBlock(
             label: 'الاسم الاول',
             controller: _firstNameController,

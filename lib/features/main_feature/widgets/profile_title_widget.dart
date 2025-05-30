@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 
 import '../../../core/utils/colors/colors.dart';
 import '../../../core/utils/values/font_size.dart';
+import 'package:intl/intl.dart';
 
 class ProfileTitleWidget extends StatelessWidget {
   final UserEntity userEntity;
@@ -31,6 +32,16 @@ class ProfileTitleWidget extends StatelessWidget {
               fontWeight: FontWeight.bold,
               overflow: TextOverflow.ellipsis),
         ),
+        userEntity.subscriptionExpireDate!=null?
+        Text(
+         'Expire Date: ${DateFormat('yyyy-MM-dd').format(userEntity.subscriptionExpireDate!)}'
+          ,
+          style: TextStyle(
+              fontSize: k16Sp,
+              color: kGreyColor,
+              fontWeight: FontWeight.bold,
+              overflow: TextOverflow.ellipsis),
+        ):const SizedBox.shrink(),
       ],
     );
   }

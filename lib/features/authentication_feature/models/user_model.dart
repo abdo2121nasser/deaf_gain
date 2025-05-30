@@ -20,7 +20,7 @@ class UserModel extends UserEntity {
         token: json['token'],
         expireDate: json['expiration'],
         avatarUrl: json['user']['profilePictureUrl'],
-        phoneNumber: json['user']['phoneNumber']);
+        phoneNumber: json['user']['phoneNumber']??'');
   }
   factory UserModel.fromUpdatedDataJson(Map<String, dynamic> json) {
     return UserModel(

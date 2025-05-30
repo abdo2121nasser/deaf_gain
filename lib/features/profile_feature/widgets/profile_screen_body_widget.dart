@@ -27,12 +27,15 @@ class ProfileScreenBodyWidget extends StatelessWidget {
                     child: CircularProgressIndicator(),
                   ),
                 );
-              } else if ( state is ProfileInitial) {
+              } else if ( state is GetUserDataSuccessState ) {
+                debugPrint(state.userEntity.subscriptionExpireDate.toString());
+                //todo remove the print
                 return SliverToBoxAdapter(
                   child: Column(
                     children: [
                       SizedBox(height: k10V),
-                       CustomProfileAvatarWidget(imageUrl: state.userEntity.avatarUrl.toString(),),
+                       CustomProfileAvatarWidget(imageUrl: state.userEntity.avatarUrl,),
+
                       ProfileFormWidget(
                         globalKey: _globalKey,
                         userEntity: state.userEntity,
