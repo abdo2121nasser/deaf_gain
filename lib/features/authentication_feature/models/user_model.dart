@@ -9,7 +9,9 @@ class UserModel extends UserEntity {
       required super.token,
       required super.expireDate,
       required super.avatarUrl,
-      required super.phoneNumber});
+      required super.phoneNumber,
+        required super.subscriptionExpireDate
+      });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
@@ -20,7 +22,9 @@ class UserModel extends UserEntity {
         token: json['token'],
         expireDate: json['expiration'],
         avatarUrl: json['user']['profilePictureUrl'],
-        phoneNumber: json['user']['phoneNumber']??'');
+        phoneNumber: json['user']['phoneNumber']??'',
+    subscriptionExpireDate: null
+    );
   }
   factory UserModel.fromUpdatedDataJson(Map<String, dynamic> json) {
     return UserModel(
@@ -31,7 +35,9 @@ class UserModel extends UserEntity {
         token: json['token'],
         expireDate: json['expiration'],
         avatarUrl: json['profilePictureUrl'],
-        phoneNumber: json['phoneNumber']);
+        phoneNumber: json['phoneNumber'],
+    subscriptionExpireDate: null
+    );
   }
 
   Map<String, dynamic> toJson() {

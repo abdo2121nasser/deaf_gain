@@ -36,10 +36,10 @@ class CustomProfileAvatarWidget extends StatelessWidget {
                   backgroundImage: state.image != null
                       ? FileImage(
                           state.image!)
-                      : (imageUrl != null
+                      : (imageUrl != null && imageUrl!.isNotEmpty
                       ? NetworkImage(imageUrl!)
                       : null),
-                  child: (imageUrl == null ) && state.image == null
+                  child: (imageUrl == null || imageUrl!.isEmpty ) && state.image == null
                       ? Icon(
                           Icons.person,
                           color: kWhiteColor,

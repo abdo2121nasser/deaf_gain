@@ -1,29 +1,28 @@
 import 'package:deaf_gain/core/utils/colors/colors.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../values/app_size.dart';
 
 class ProfileAvatarWidget extends StatelessWidget {
-  String? userAvatar;
-  ProfileAvatarWidget({super.key, required this.userAvatar});
+  final String? userAvatar;
+
+  const ProfileAvatarWidget({super.key, required this.userAvatar});
 
   @override
   Widget build(BuildContext context) {
+    final hasAvatar = userAvatar != null && userAvatar!.isNotEmpty;
+
     return CircleAvatar(
       backgroundColor: kDarkBlueColor,
-      backgroundImage: userAvatar!=null
-          ? NetworkImage(userAvatar!)
-          : null,
+      backgroundImage: hasAvatar ? NetworkImage(userAvatar!) : null,
       radius: k50R,
-      child: userAvatar==null
+      child: !hasAvatar
           ? Icon(
-              Icons.person,
-              size: k50R,
-              color: kWhiteColor,
-            )
+        Icons.person,
+        size: k50R,
+        color: kWhiteColor,
+      )
           : null,
-
     );
   }
 }

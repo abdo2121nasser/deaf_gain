@@ -38,7 +38,7 @@ class MainScreen extends StatelessWidget {
           create: (context) => PaymentCubit(),
           child: BlocBuilder<ProfileCubit, ProfileState>(
             builder: (context, state) {
-              if (state is GetUserDataSuccessState) {
+              if (state is SuccessState) {
                 return CustomDrawerWidget(
                   userEntity: state.userEntity,
                 );

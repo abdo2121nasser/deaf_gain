@@ -1,5 +1,6 @@
 import 'package:deaf_gain/core/utils/component/general_button_widget.dart';
 import 'package:deaf_gain/core/utils/component/general_text_form_field.dart';
+import 'package:deaf_gain/core/utils/component/toast_message_function.dart';
 import 'package:deaf_gain/core/utils/values/app_size.dart';
 import 'package:deaf_gain/core/utils/values/font_size.dart';
 import 'package:flutter/material.dart';
@@ -61,7 +62,11 @@ void showRatingDialog(BuildContext context) {
           actions: [
             GeneralButtonWidget(
                 label: 'ارسل',
-                function: (){},
+                function: (){
+                  showToastMessage(message: 'شكرا لتقييمك');
+                  Navigator.pop(context);
+
+                },
                 textColor: kWhiteColor,
                 backgroundColor: kDarkBlueColor,
                 borderRadius: k20R),

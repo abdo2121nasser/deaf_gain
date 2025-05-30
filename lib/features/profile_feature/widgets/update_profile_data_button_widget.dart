@@ -9,9 +9,13 @@ import '../../../core/utils/values/app_size.dart';
 
 class UpdateProfileDataButtonWidget extends StatelessWidget {
   final bool Function() validateData;
-  final UserEntity userEntity;
+  // final UserEntity userEntity;
+  final VoidCallback onUpdate;
+
   const UpdateProfileDataButtonWidget(
-      {super.key, required this.validateData, required this.userEntity});
+      {super.key, required this.validateData,
+        // required this.userEntity,
+        required this.onUpdate});
 
   @override
   Widget build(BuildContext context) {
@@ -19,16 +23,9 @@ class UpdateProfileDataButtonWidget extends StatelessWidget {
         label: 'تحديث الملف الشخصي',
         function: () {
           if (validateData()) {
-            ProfileCubit.get(context).updateUserData(
-                userModel: UserModel(
-                    firstName: userEntity.firstName,
-                    lastName: userEntity.lastName,
-                    id: userEntity.id,
-                    email: userEntity.email,
-                    token: userEntity.token,
-                    expireDate: userEntity.expireDate,
-                    avatarUrl: userEntity.avatarUrl,
-                    phoneNumber: userEntity.phoneNumber));
+            onUpdate();
+            // ProfileCubit.get(context).updateUserData(
+            //     userModel: userEntity as UserModel);
           }
         },
         textColor: kWhiteColor,

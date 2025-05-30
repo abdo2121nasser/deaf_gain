@@ -7,47 +7,35 @@ import '../../../core/utils/values/app_size.dart';
 import '../../main_feature/widgets/profile_title_widget.dart';
 import 'custom_profile_avatar_widget.dart';
 
-class ProfileFormWidget extends StatefulWidget {
+class ProfileFormWidget extends StatelessWidget {
   const ProfileFormWidget({
     super.key,
     required this.globalKey,
+    required this.firstNameController,
+    required this.lastNameController,
+    required this.phoneNumberController,
     required this.userEntity,
   });
 
   final GlobalKey<FormState> globalKey;
+  final TextEditingController firstNameController;
+  final TextEditingController lastNameController;
+  final TextEditingController phoneNumberController;
   final UserEntity userEntity;
-
-  @override
-  State<ProfileFormWidget> createState() => _ProfileFormWidgetState();
-}
-
-class _ProfileFormWidgetState extends State<ProfileFormWidget> {
-  final TextEditingController _firstNameController = TextEditingController();
-  final TextEditingController _lastNameController = TextEditingController();
-  final TextEditingController _phoneNumberController = TextEditingController();
-
-  @override
-  void initState() {
-    super.initState();
-    _firstNameController.text = widget.userEntity.firstName??'';
-    _lastNameController.text = widget.userEntity.lastName ??'';
-    _phoneNumberController.text = widget.userEntity.phoneNumber ?? '';
-  }
 
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: widget.globalKey,
+      key: globalKey,
       child: Column(
         children: [
-
           SizedBox(height: k10V),
-          ProfileTitleWidget(userEntity: widget.userEntity,),
+          ProfileTitleWidget(userEntity: userEntity),
           SizedBox(height: k10V),
 
           CustomFullInputBlock(
             label: 'الاسم الاول',
-            controller: _firstNameController,
+            controller: firstNameController,
             validator: ValidatorService.validateName,
             hint: 'ادخل اسمك الاول',
             textColor: kBlackColor,
@@ -57,7 +45,7 @@ class _ProfileFormWidgetState extends State<ProfileFormWidget> {
           SizedBox(height: k10V),
           CustomFullInputBlock(
             label: 'الاسم الاخير',
-            controller: _lastNameController,
+            controller: lastNameController,
             validator: ValidatorService.validateName,
             hint: 'ادخل اسم العائله',
             textColor: kBlackColor,
@@ -67,7 +55,7 @@ class _ProfileFormWidgetState extends State<ProfileFormWidget> {
           SizedBox(height: k10V),
           CustomFullInputBlock(
             label: 'رقم الهاتف',
-            controller: _phoneNumberController,
+            controller: phoneNumberController,
             validator: ValidatorService.validatePhoneNumber,
             hint: '01122333344444',
             textColor: kBlackColor,
@@ -80,12 +68,5 @@ class _ProfileFormWidgetState extends State<ProfileFormWidget> {
       ),
     );
   }
-
-  @override
-  void dispose() {
-    _firstNameController.dispose();
-    _lastNameController.dispose();
-    _phoneNumberController.dispose();
-    super.dispose();
-  }
 }
+

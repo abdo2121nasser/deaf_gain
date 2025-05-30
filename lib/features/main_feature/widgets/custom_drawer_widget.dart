@@ -55,8 +55,6 @@ class CustomDrawerWidget extends StatelessWidget {
                 DateTime.now().add(const Duration(days: 30));
             await StoreUserByHive().storeUser(userEntity: userEntity);
             ProfileCubit.get(context).getUserData();
-
-            // todo update premium state of user data
           }),
     ];
 

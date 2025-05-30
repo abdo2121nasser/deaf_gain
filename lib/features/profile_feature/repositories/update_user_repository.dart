@@ -1,6 +1,7 @@
 import 'package:deaf_gain/core/services/dio_service.dart';
 import 'package:deaf_gain/core/utils/strings/end_points.dart';
 import 'package:deaf_gain/core/utils/strings/strings.dart';
+import 'package:deaf_gain/features/authentication_feature/repositories/store_user_repository.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hive/hive.dart';
@@ -39,6 +40,24 @@ class UpdateUserFromApi implements UpdateUserRepository {
         message: failure.userMessage,
       );
       return null;
+    } catch (error) {
+      debugPrint(error.toString());
+      showToastMessage(message: kUnKnownProblemMessage);
+      return null;
+    }
+  }
+}
+
+class UpdateUserFromHive implements UpdateUserRepository {
+  final UserModel userModel;
+
+  UpdateUserFromHive({required this.userModel});
+  @override
+  Future<UserEntity?> updateUser() async {
+    try {
+    await  StoreUserByHive().storeUser(userEntity: userModel);
+    print('-------------------');
+      return userModel;
     } catch (error) {
       debugPrint(error.toString());
       showToastMessage(message: kUnKnownProblemMessage);
