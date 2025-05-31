@@ -5,7 +5,8 @@ class DioHelper {
 
   static init() {
     dio = Dio(BaseOptions(
-      baseUrl: 'http://192.168.1.9:5256/api/',
+      baseUrl: 'http://127.0.0.1:5256/api/',
+      // adb reverse tcp:5256 tcp:5256
       //dotnet run --urls "http://0.0.0.0:5256"
       receiveDataWhenStatusError: true,
 
@@ -26,7 +27,8 @@ class DioHelper {
   static Future<Response> postData(
       {required String endPoint,
       Map<String, dynamic>? query,
-      required Map<String,dynamic> map,
+       Map<String,dynamic>? map,
+        FormData? data,
       String? token,
       String? contentType}) {
     dio!.options.headers = {
@@ -34,7 +36,7 @@ class DioHelper {
     };
     dio!.options.contentType = contentType;
 
-    return dio!.post(endPoint, queryParameters: query, data: map);
+    return dio!.post(endPoint, queryParameters: query, data: data?? map);
   }
 
   static Future<Response> putData({

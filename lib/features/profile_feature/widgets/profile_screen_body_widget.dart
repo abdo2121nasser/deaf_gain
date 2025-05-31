@@ -32,8 +32,7 @@ class ProfileScreenBodyWidget extends StatelessWidget {
                   ),
                 );
               } else if (state is SuccessState) {
-                debugPrint(state.userEntity.subscriptionExpireDate.toString());
-                //todo remove the print
+
                 return SliverToBoxAdapter(
                   child: Column(
                     children: [
