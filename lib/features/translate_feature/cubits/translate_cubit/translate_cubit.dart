@@ -18,7 +18,23 @@ class TranslateCubit extends Cubit<TranslateState> {
   StreamSubscription<String>? _msgSub;
   CameraController? _controller;
 
-  Future<void> initConnection(CameraController controller) async {
+  int get translationSpeed => _service.timerSpeed;
+  incrementTranslationSpeed() {
+    _service.updateTimerSpeed(translationSpeed+100);
+    emit(ChangeTranslationSpeedState());
+  }
+
+  decrementTranslationSpeed() {
+    if(translationSpeed==0)return;
+    _service.updateTimerSpeed(translationSpeed-100);
+
+    emit(ChangeTranslationSpeedState());
+
+
+
+  }
+
+  Future<void> listenToConnection(CameraController controller) async {
     _controller = controller;
     emit(InitializeConnectionLoadingState());
 
@@ -40,7 +56,7 @@ class TranslateCubit extends Cubit<TranslateState> {
       );
 
       if (!isClosed) {
-        emit(InitializeConnectionSuccessState());
+        emit(ListenToConnectionSuccessState());
       }
     } on DioException catch (e) {
       final failure = ServerFailure.fromServer(e);

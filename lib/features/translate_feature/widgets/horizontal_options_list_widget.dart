@@ -26,6 +26,7 @@ class HorizontalOptionsListWidget extends StatelessWidget {
           text: 'معا',
           iconData: Icons.record_voice_over,
         )
+
       ],
     );
   }

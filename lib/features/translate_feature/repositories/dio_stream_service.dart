@@ -18,16 +18,17 @@ class DioStreamService {
   ));
   CameraController? _cameraController;
   CameraImage? _latestFrame;
-
   Timer? _timer;
   bool _sending = false;
   bool _isStreaming = false;
+  int _timerSpeed = 100;
 
   final StreamController<String> _responseController =
       StreamController.broadcast();
 
   Stream<String> get messages => _responseController.stream;
   bool get isStreaming => _isStreaming;
+  int get timerSpeed => _timerSpeed;
 
   Future<void> send(CameraController controller) async {
     if (_isStreaming) return;
@@ -37,17 +38,13 @@ class DioStreamService {
     await _cameraController!.startImageStream((CameraImage frame) {
       _latestFrame = frame;
     });
-    _timer = Timer.periodic(
-      const Duration(milliseconds: 100),
-      (_) async {
-       await _sendFrames();
-      }
-    );
+    _timer = Timer.periodic(Duration(milliseconds: _timerSpeed), (_) async {
+      await _sendFrames();
+    });
   }
 
   Future<void> pause() async {
     if (!_isStreaming) return;
-
     _isStreaming = false;
     _timer?.cancel();
     _timer = null;
@@ -56,7 +53,6 @@ class DioStreamService {
     try {
       await _cameraController?.stopImageStream();
     } catch (error) {
-      debugPrint('-----------------------------------------------------');
       debugPrint(error.toString());
     }
   }
@@ -77,7 +73,7 @@ class DioStreamService {
       Response response = await _sendRequests(jpegBytes);
       if (response.statusCode == 200 && response.data != null) {
         final PredictionModel predictionModel =
-        PredictionModel.fromJson(response.data);
+            PredictionModel.fromJson(response.data);
         final display = "${predictionModel.arabic} ";
         _responseController.add(display);
       }
@@ -93,6 +89,7 @@ class DioStreamService {
       _sending = false;
     }
   }
+
   Future<Response> _sendRequests(Uint8List jpegBytes) async {
     final formData = FormData.fromMap({
       'file': MultipartFile.fromBytes(
@@ -108,6 +105,16 @@ class DioStreamService {
     );
   }
 
+  void updateTimerSpeed(int newSpeedMs) {
+    _timerSpeed = newSpeedMs;
+    if (_isStreaming) {
+      _timer?.cancel();
+      _timer = Timer.periodic(
+        Duration(milliseconds: _timerSpeed),
+            (_) async => await _sendFrames(),
+      );
+    }
+  }
   Uint8List _convertCameraImageToJpeg(CameraImage cameraImage) {
     final int width = cameraImage.width;
     final int height = cameraImage.height;

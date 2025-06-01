@@ -18,7 +18,7 @@ class CameraFeedsContainerWidget extends StatelessWidget {
       borderRadius: BorderRadius.circular(k14R),
       child: Container(
         width: double.infinity,
-        height: MediaQuery.of(context).size.height * 0.3,
+        height: MediaQuery.of(context).size.height * 0.25,
         color: kBackgroundColor, // placeholder until camera ready
         child: BlocBuilder<camera.CameraCubit, camera.CameraState>(
           builder: (context, state) {

@@ -6,7 +6,7 @@ abstract class TranslateState {}
 class TranslateInitial extends TranslateState {}
 
 class InitializeConnectionLoadingState extends TranslateState {}
-class InitializeConnectionSuccessState extends TranslateState {}
+class ListenToConnectionSuccessState extends TranslateState {}
 
 
 class TranslateSuccessState extends TranslateState {
@@ -22,3 +22,5 @@ class TranslateErrorState extends TranslateState {
 }
 
 class TranslatePausedState extends TranslateState {}
+
+class ChangeTranslationSpeedState extends TranslateState {}

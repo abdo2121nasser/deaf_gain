@@ -1,4 +1,6 @@
+import 'package:deaf_gain/core/utils/colors/colors.dart';
 import 'package:deaf_gain/core/utils/component/toast_message_function.dart';
+import 'package:deaf_gain/core/utils/values/font_size.dart';
 import 'package:deaf_gain/features/translate_feature/cubits/camera_cubit/camera_cubit.dart';
 import 'package:deaf_gain/features/translate_feature/cubits/translate_cubit/translate_cubit.dart'
     as trans;
@@ -7,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/utils/strings/strings.dart';
+import '../../main_feature/widgets/tranlsation_speed_row_widget.dart';
 import '../widgets/camera_feeds_container_widget.dart';
 import '../widgets/horizontal_options_list_widget.dart';
 import '../widgets/record_button_widget.dart';
@@ -29,12 +32,14 @@ class TranslateScreen extends StatelessWidget {
           BlocListener<CameraCubit, CameraState>(
             listener: (context, state) {
               if (state is InitializeCameraSuccessState) {
-                trans.TranslateCubit.get(context).initConnection(state.controller!);
+                trans.TranslateCubit.get(context).listenToConnection(state.controller!);
               }
             },
             child: const CameraFeedsContainerWidget(),
           ),
+
           const HorizontalOptionsListWidget(),
+          const TranslationSpeedRowWidget(),
           BlocConsumer<trans.TranslateCubit, trans.TranslateState>(
             listener: (context, state) {},
             builder: (context, state) {
@@ -68,15 +73,14 @@ class TranslateScreen extends StatelessWidget {
                     ) {
                       return RetryButtonWidget(
                           onTab: (){
-                            trans.TranslateCubit.get(context).initConnection(cameraState.controller!);
+                            trans.TranslateCubit.get(context).listenToConnection(cameraState.controller!);
                           });
                     }
                     else if(transState is trans.InitializeConnectionLoadingState){
                       return const Center(child: CircularProgressIndicator(),);
                     }
                     else {
-                      return RecordButtonWidget(
-                      );
+                      return RecordButtonWidget();
 
                     }
                   },
@@ -95,3 +99,4 @@ class TranslateScreen extends StatelessWidget {
     );
   }
 }
+
