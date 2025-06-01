@@ -1,9 +1,8 @@
-import 'package:deaf_gain/core/utils/colors/colors.dart';
 import 'package:deaf_gain/core/utils/component/toast_message_function.dart';
-import 'package:deaf_gain/core/utils/values/font_size.dart';
 import 'package:deaf_gain/features/translate_feature/cubits/camera_cubit/camera_cubit.dart';
-import 'package:deaf_gain/features/translate_feature/cubits/translate_cubit/translate_cubit.dart'
-    as trans;
+import 'package:deaf_gain/features/translate_feature/cubits/out_put_type_cubit/out_put_type_cubit.dart';
+import 'package:deaf_gain/features/translate_feature/cubits/translate_cubit/translate_cubit.dart';
+import 'package:deaf_gain/features/translate_feature/enums/output_type_enum.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,7 +23,8 @@ class TranslateScreen extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => CameraCubit()..initializeCamera()),
-        BlocProvider(create: (context) => trans.TranslateCubit()),
+        BlocProvider(create: (context) => TranslateCubit()),
+        BlocProvider(create: (context) => OutPutTypeCubit()),
       ],
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -32,56 +32,64 @@ class TranslateScreen extends StatelessWidget {
           BlocListener<CameraCubit, CameraState>(
             listener: (context, state) {
               if (state is InitializeCameraSuccessState) {
-                trans.TranslateCubit.get(context).listenToConnection(state.controller!);
+                TranslateCubit.get(context)
+                    .listenToConnection(state.controller!);
               }
             },
             child: const CameraFeedsContainerWidget(),
           ),
-
           const HorizontalOptionsListWidget(),
           const TranslationSpeedRowWidget(),
-          BlocConsumer<trans.TranslateCubit, trans.TranslateState>(
-            listener: (context, state) {},
-            builder: (context, state) {
-              if (state is trans.TranslateSuccessState) {
-                return TranslatedTextContainerWidget(
-                  translatedText: state.translatedText,
-                );
-              } else if (state is ErrorState) {
-                return const TranslatedTextContainerWidget(
-                  translatedText: 'حدث خطاء ما الرجتء اعاده المحاوله لاحقا',
+          BlocBuilder<OutPutTypeCubit, OutPutTypeState>(
+            builder: (context, outPutTypeState) {
+              if (outPutTypeState.outPutType == OutPutTypeEnum.text ||
+                  outPutTypeState.outPutType == OutPutTypeEnum.both) {
+                return BlocConsumer<TranslateCubit, TranslateState>(
+                  listener: (context, state) {},
+                  builder: (context, state) {
+                    if (state is TranslateSuccessState) {
+                      return TranslatedTextContainerWidget(
+                        translatedText: state.translatedText,
+                      );
+                    } else if (state is ErrorState) {
+                      return const TranslatedTextContainerWidget(
+                        translatedText:
+                            'حدث خطاء ما الرجتء اعاده المحاوله لاحقا',
+                      );
+                    } else {
+                      return const TranslatedTextContainerWidget(
+                        translatedText:
+                            'اضغط علي ذر التسجيل لبدء عمليه الترجمه',
+                      );
+                    }
+                  },
                 );
               } else {
-                return const TranslatedTextContainerWidget(
-                  translatedText: 'اضغط علي ذر التسجيل لبدء عمليه الترجمه',
-                );
+                return const SizedBox.shrink();
               }
             },
           ),
           BlocBuilder<CameraCubit, CameraState>(
             builder: (context, cameraState) {
               if (cameraState is InitializeCameraSuccessState) {
-                return BlocConsumer<trans.TranslateCubit, trans.TranslateState>(
+                return BlocConsumer<TranslateCubit, TranslateState>(
                   listener: (context, transState) {
-                    if(transState is trans.TranslateErrorState){
-
+                    if (transState is TranslateErrorState) {
                       showToastMessage(message: kUnKnownProblemMessage);
                     }
                   },
                   builder: (context, transState) {
-                    if (transState is trans.TranslateErrorState
-                    ) {
-                      return RetryButtonWidget(
-                          onTab: (){
-                            trans.TranslateCubit.get(context).listenToConnection(cameraState.controller!);
-                          });
-                    }
-                    else if(transState is trans.InitializeConnectionLoadingState){
-                      return const Center(child: CircularProgressIndicator(),);
-                    }
-                    else {
+                    if (transState is TranslateErrorState) {
+                      return RetryButtonWidget(onTab: () {
+                        TranslateCubit.get(context)
+                            .listenToConnection(cameraState.controller!);
+                      });
+                    } else if (transState is InitializeConnectionLoadingState) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    } else {
                       return RecordButtonWidget();
-
                     }
                   },
                 );
@@ -99,4 +107,3 @@ class TranslateScreen extends StatelessWidget {
     );
   }
 }
-

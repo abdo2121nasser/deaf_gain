@@ -20,18 +20,15 @@ class TranslateCubit extends Cubit<TranslateState> {
 
   int get translationSpeed => _service.timerSpeed;
   incrementTranslationSpeed() {
-    _service.updateTimerSpeed(translationSpeed+50);
+    _service.updateTimerSpeed(translationSpeed + 50);
     emit(ChangeTranslationSpeedState());
   }
 
   decrementTranslationSpeed() {
-    if(translationSpeed==0)return;
-    _service.updateTimerSpeed(translationSpeed-50);
+    if (translationSpeed == 0) return;
+    _service.updateTimerSpeed(translationSpeed - 50);
 
     emit(ChangeTranslationSpeedState());
-
-
-
   }
 
   Future<void> listenToConnection(CameraController controller) async {
