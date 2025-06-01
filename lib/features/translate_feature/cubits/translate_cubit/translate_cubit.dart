@@ -1,17 +1,19 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:camera/camera.dart';
+import 'package:deaf_gain/core/services/failure_service.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/utils/component/toast_message_function.dart';
 import '../../repositories/dio_stream_service.dart';
 part 'translate_state.dart';
 
 class TranslateCubit extends Cubit<TranslateState> {
   TranslateCubit() : super(TranslateInitial());
   static TranslateCubit get(context) => BlocProvider.of(context);
-  final DioStreamService _service =
-      DioStreamService(url: 'http://127.0.0.1:5000/predict');
+  final DioStreamService _service = DioStreamService();
 
   StreamSubscription<String>? _msgSub;
   CameraController? _controller;
@@ -24,15 +26,15 @@ class TranslateCubit extends Cubit<TranslateState> {
       _msgSub = _service.messages.listen(
         (message) {
           if (!isClosed) {
-            if(state is TranslateSuccessState) {
-              message+= (state as TranslateSuccessState).translatedText;
+            if (state is TranslateSuccessState) {
+              message += (state as TranslateSuccessState).translatedText;
             }
             emit(TranslateSuccessState(translatedText: message));
           }
         },
         onError: (error) {
           if (!isClosed) {
-            emit(TranslateErrorState(message: error.toString()));
+            emit(TranslateErrorState(error: error.toString()));
           }
         },
       );
@@ -40,27 +42,36 @@ class TranslateCubit extends Cubit<TranslateState> {
       if (!isClosed) {
         emit(InitializeConnectionSuccessState());
       }
+    } on DioException catch (e) {
+      final failure = ServerFailure.fromServer(e);
+      showToastMessage(
+        message: failure.userMessage,
+      );
+      emit(TranslateErrorState(error: failure.devMessage));
     } catch (e) {
-      emit(TranslateErrorState(message: e.toString()));
+      emit(TranslateErrorState(error: e.toString()));
     }
   }
 
   Future<void> startSending() async {
     if (_controller == null) {
-      emit(TranslateErrorState(message: 'Camera not initialized'));
+      emit(TranslateErrorState(error: 'Camera not initialized'));
       return;
     }
-    // emit(TranslateStreamingState());
-
     try {
-      await _service.start(_controller!);
+      await _service.send(_controller!);
+    } on DioException catch (e) {
+      final failure = ServerFailure.fromServer(e);
+      showToastMessage(
+        message: failure.userMessage,
+      );
+      emit(TranslateErrorState(error: failure.devMessage));
     } catch (e) {
-      emit(TranslateErrorState(message: e.toString()));
+      emit(TranslateErrorState(error: e.toString()));
     }
   }
 
   Future<void> pauseSending() async {
-    // Only pause frame sending; keep the message listener alive
     await _service.pause();
     if (!isClosed) {
       emit(TranslatePausedState());

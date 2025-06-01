@@ -6,8 +6,8 @@ abstract class TranslateState {}
 class TranslateInitial extends TranslateState {}
 
 class InitializeConnectionLoadingState extends TranslateState {}
+class InitializeConnectionSuccessState extends TranslateState {}
 
-class TranslateStreamingState extends TranslateState {}
 
 class TranslateSuccessState extends TranslateState {
   final String translatedText;
@@ -15,9 +15,10 @@ class TranslateSuccessState extends TranslateState {
 }
 
 class TranslateErrorState extends TranslateState {
-  final String message;
-  TranslateErrorState({required this.message});
+  final String error;
+  TranslateErrorState({required this.error}){
+    debugPrint(error);
+  }
 }
 
 class TranslatePausedState extends TranslateState {}
-class InitializeConnectionSuccessState extends TranslateState {}

@@ -1,3 +1,4 @@
+import 'package:deaf_gain/core/utils/component/toast_message_function.dart';
 import 'package:deaf_gain/features/translate_feature/cubits/camera_cubit/camera_cubit.dart';
 import 'package:deaf_gain/features/translate_feature/cubits/translate_cubit/translate_cubit.dart'
     as trans;
@@ -5,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/utils/strings/strings.dart';
 import '../widgets/camera_feeds_container_widget.dart';
 import '../widgets/horizontal_options_list_widget.dart';
 import '../widgets/record_button_widget.dart';
@@ -54,7 +56,13 @@ class TranslateScreen extends StatelessWidget {
           BlocBuilder<CameraCubit, CameraState>(
             builder: (context, cameraState) {
               if (cameraState is InitializeCameraSuccessState) {
-                return BlocBuilder<trans.TranslateCubit, trans.TranslateState>(
+                return BlocConsumer<trans.TranslateCubit, trans.TranslateState>(
+                  listener: (context, transState) {
+                    if(transState is trans.TranslateErrorState){
+
+                      showToastMessage(message: kUnKnownProblemMessage);
+                    }
+                  },
                   builder: (context, transState) {
                     if (transState is trans.TranslateErrorState
                     ) {

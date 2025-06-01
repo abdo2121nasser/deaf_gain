@@ -15,19 +15,26 @@ class _RecordButtonWidgetState extends State<RecordButtonWidget> {
   double _scale = 1.0;
 
   void _onTapDown(_) {
-    setState(() {
+    setState(()  {
       _scale = 1.2; // 120% size
       TranslateCubit.get(context).startSending();
     });
   }
 
   void _onTapUp(_) {
-    setState(() {
+    setState(()  {
       _scale = 1.0; // Return to normal
       TranslateCubit.get(context).pauseSending();
 
     });
   }
+  void _onTapCancel() {
+    setState(() {
+      _scale = 1.0; // Return to normal
+    });
+    TranslateCubit.get(context).pauseSending();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -35,11 +42,8 @@ class _RecordButtonWidgetState extends State<RecordButtonWidget> {
       child: GestureDetector(
         onTapDown: _onTapDown,
         onTapUp: _onTapUp,
-        onTapCancel: () {
-          setState(() {
-            _scale = 1.0;
-          });
-        },
+
+        onTapCancel:_onTapCancel,
         child: AnimatedScale(
           scale: _scale,
           duration: const Duration(milliseconds: 300),

@@ -24,7 +24,7 @@ class CustomBottomNavigationBarWidget extends StatelessWidget {
                 icon: Icon(Icons.home), label: 'المنزل'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.translate), label: 'ترجمه'),
-            BottomNavigationBarItem(icon: Icon(Icons.history), label: 'السجل'),
+            // BottomNavigationBarItem(icon: Icon(Icons.history), label: 'السجل'),
           ],
         );
       },
