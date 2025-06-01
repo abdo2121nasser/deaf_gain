@@ -24,3 +24,4 @@ class TranslateErrorState extends TranslateState {
 class TranslatePausedState extends TranslateState {}
 
 class ChangeTranslationSpeedState extends TranslateState {}
+class ChangePlayState extends TranslateState {}

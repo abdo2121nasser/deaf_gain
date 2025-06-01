@@ -3,8 +3,11 @@ import 'package:deaf_gain/core/utils/colors/colors.dart';
 import 'package:deaf_gain/core/utils/values/app_size.dart';
 import 'package:deaf_gain/features/translate_feature/cubits/translate_cubit/translate_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 
 class RecordButtonWidget extends StatefulWidget {
+  const RecordButtonWidget({super.key});
+
 
 
   @override
@@ -12,22 +15,23 @@ class RecordButtonWidget extends StatefulWidget {
 }
 
 class _RecordButtonWidgetState extends State<RecordButtonWidget> {
+
   double _scale = 1.0;
 
   void _onTapDown(_) {
-    setState(()  {
+    setState(() {
       _scale = 1.2; // 120% size
       TranslateCubit.get(context).startSending();
     });
   }
 
   void _onTapUp(_) {
-    setState(()  {
+    setState(() {
       _scale = 1.0; // Return to normal
       TranslateCubit.get(context).pauseSending();
-
     });
   }
+
   void _onTapCancel() {
     setState(() {
       _scale = 1.0; // Return to normal
@@ -35,15 +39,13 @@ class _RecordButtonWidgetState extends State<RecordButtonWidget> {
     TranslateCubit.get(context).pauseSending();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Center(
       child: GestureDetector(
         onTapDown: _onTapDown,
         onTapUp: _onTapUp,
-
-        onTapCancel:_onTapCancel,
+        onTapCancel: _onTapCancel,
         child: AnimatedScale(
           scale: _scale,
           duration: const Duration(milliseconds: 300),

@@ -33,17 +33,28 @@ class TranslateScreen extends StatelessWidget {
             listener: (context, state) {
               if (state is InitializeCameraSuccessState) {
                 TranslateCubit.get(context)
-                    .listenToConnection(state.controller!);
+                    .listenToConnection(controller: state.controller!,);
+
               }
             },
             child: const CameraFeedsContainerWidget(),
           ),
           const HorizontalOptionsListWidget(),
           const TranslationSpeedRowWidget(),
-          BlocBuilder<OutPutTypeCubit, OutPutTypeState>(
+          BlocConsumer<OutPutTypeCubit, OutPutTypeState>(
+            listener: (context, state) {
+              if(state.outPutType != OutPutTypeEnum.text)
+                {
+                  TranslateCubit.get(context)
+                      .changeToPlaySound(true);
+                }
+              else{
+                TranslateCubit.get(context)
+                    .changeToPlaySound(false);
+              }
+            },
             builder: (context, outPutTypeState) {
-              if (outPutTypeState.outPutType == OutPutTypeEnum.text ||
-                  outPutTypeState.outPutType == OutPutTypeEnum.both) {
+              if (outPutTypeState.outPutType != OutPutTypeEnum.sound) {
                 return BlocConsumer<TranslateCubit, TranslateState>(
                   listener: (context, state) {},
                   builder: (context, state) {
@@ -72,25 +83,30 @@ class TranslateScreen extends StatelessWidget {
           BlocBuilder<CameraCubit, CameraState>(
             builder: (context, cameraState) {
               if (cameraState is InitializeCameraSuccessState) {
-                return BlocConsumer<TranslateCubit, TranslateState>(
-                  listener: (context, transState) {
-                    if (transState is TranslateErrorState) {
-                      showToastMessage(message: kUnKnownProblemMessage);
-                    }
-                  },
-                  builder: (context, transState) {
-                    if (transState is TranslateErrorState) {
-                      return RetryButtonWidget(onTab: () {
-                        TranslateCubit.get(context)
-                            .listenToConnection(cameraState.controller!);
-                      });
-                    } else if (transState is InitializeConnectionLoadingState) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    } else {
-                      return RecordButtonWidget();
-                    }
+                return BlocBuilder<OutPutTypeCubit, OutPutTypeState>(
+                  builder: (context, outPutTypeState) {
+                    return BlocConsumer<TranslateCubit, TranslateState>(
+                      listener: (context, transState) {
+                        if (transState is TranslateErrorState) {
+                          showToastMessage(message: kUnKnownProblemMessage);
+                        }
+                      },
+                      builder: (context, transState) {
+                        if (transState is TranslateErrorState) {
+                          return RetryButtonWidget(onTab: () {
+                            TranslateCubit.get(context).listenToConnection(
+                                controller: cameraState.controller!,);
+                          });
+                        } else if (transState
+                            is InitializeConnectionLoadingState) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        } else {
+                          return const RecordButtonWidget();
+                        }
+                      },
+                    );
                   },
                 );
               } else if (cameraState is InitializeCameraErrorState) {

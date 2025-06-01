@@ -21,7 +21,7 @@ class DioStreamService {
   Timer? _timer;
   bool _sending = false;
   bool _isStreaming = false;
-  int _timerSpeed = 100;
+  int _timerSpeed = 500;
 
   final StreamController<String> _responseController =
       StreamController.broadcast();
