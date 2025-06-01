@@ -42,7 +42,7 @@ class SignInButtonWidget extends StatelessWidget {
                 return GeneralButtonWidget(
                     label: 'تسجيل الدخول',
                     function: () {
-                      if (formState.validateForm()||true) {
+                      if (formState.validateForm()) {
                         SignInCubit.get(authenticationContext).signIn(
                             signInModel: SignInModel(
                                 email: formState.emailController.text,

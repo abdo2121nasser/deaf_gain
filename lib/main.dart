@@ -5,6 +5,7 @@ import 'package:deaf_gain/root/app_root.dart';
 
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 
@@ -17,6 +18,7 @@ import 'features/authentication_feature/entities/user_entity.dart';
 
 
 Future<void> main() async {
+
   Bloc.observer = MyBlocObserver();
   StripeDioHelper.init();
   DioHelper.init();

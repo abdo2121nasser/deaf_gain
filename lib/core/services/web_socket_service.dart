@@ -57,7 +57,7 @@ class WebSocketService {
 
     final Uint8List jpegBytes = _yuv420ToJpeg(cameraImage);
     // Send binary data over WebSocket:
-    _channel.sink.add(jpegBytes);
+    _channel.sink.add(jpegBytes,);
   }
 
   /// Convert a YUV420 [CameraImage] → JPEG Uint8List (quality=75).

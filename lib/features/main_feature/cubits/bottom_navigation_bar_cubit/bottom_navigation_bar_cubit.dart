@@ -20,9 +20,9 @@ class BottomNavigationBarCubit extends Cubit<BottomNavigationBarState> {
       case 1:
         emit(const TranslateState(body: TranslateScreen()));
         break;
-      case 2:
-        emit(const HistoryState(body: HistoryScreen()));
-        break;
+      // case 2:
+      //   emit(const HistoryState(body: HistoryScreen()));
+      //   break;
     }
   }
 
@@ -32,8 +32,8 @@ class BottomNavigationBarCubit extends Cubit<BottomNavigationBarState> {
         return 0;
       case TranslateState():
         return 1;
-      case HistoryState():
-        return 2;
+      // case HistoryState():
+      //   return 2;
     }
   }
 }

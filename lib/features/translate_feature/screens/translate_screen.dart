@@ -1,5 +1,3 @@
-import 'package:deaf_gain/core/utils/colors/colors.dart';
-import 'package:deaf_gain/core/utils/values/font_size.dart';
 import 'package:deaf_gain/features/translate_feature/cubits/camera_cubit/camera_cubit.dart';
 import 'package:deaf_gain/features/translate_feature/cubits/translate_cubit/translate_cubit.dart'
     as trans;
@@ -29,7 +27,7 @@ class TranslateScreen extends StatelessWidget {
           BlocListener<CameraCubit, CameraState>(
             listener: (context, state) {
               if (state is InitializeCameraSuccessState) {
-                trans.TranslateCubit.get(context).connect();
+                trans.TranslateCubit.get(context).initConnection(state.controller!);
               }
             },
             child: const CameraFeedsContainerWidget(),
@@ -58,13 +56,20 @@ class TranslateScreen extends StatelessWidget {
               if (cameraState is InitializeCameraSuccessState) {
                 return BlocBuilder<trans.TranslateCubit, trans.TranslateState>(
                   builder: (context, transState) {
-                    if (transState is! trans.InitializeWebSocketErrorState) {
-                      return RecordButtonWidget(
-                        cameraController: cameraState.controller!,
-                      );
-                    } else {
+                    if (transState is trans.TranslateErrorState
+                    ) {
                       return RetryButtonWidget(
-                          onTab: trans.TranslateCubit.get(context).connect);
+                          onTab: (){
+                            trans.TranslateCubit.get(context).initConnection(cameraState.controller!);
+                          });
+                    }
+                    else if(transState is trans.InitializeConnectionLoadingState){
+                      return const Center(child: CircularProgressIndicator(),);
+                    }
+                    else {
+                      return RecordButtonWidget(
+                      );
+
                     }
                   },
                 );

@@ -5,8 +5,7 @@ import 'package:deaf_gain/features/translate_feature/cubits/translate_cubit/tran
 import 'package:flutter/material.dart';
 
 class RecordButtonWidget extends StatefulWidget {
-  CameraController cameraController;
-   RecordButtonWidget({super.key,required this.cameraController});
+
 
   @override
   State<RecordButtonWidget> createState() => _RecordButtonWidgetState();
@@ -18,14 +17,14 @@ class _RecordButtonWidgetState extends State<RecordButtonWidget> {
   void _onTapDown(_) {
     setState(() {
       _scale = 1.2; // 120% size
-      TranslateCubit.get(context).startStreaming(controller: widget.cameraController);
+      TranslateCubit.get(context).startSending();
     });
   }
 
   void _onTapUp(_) {
     setState(() {
       _scale = 1.0; // Return to normal
-      TranslateCubit.get(context).stopStreaming(controller: widget.cameraController);
+      TranslateCubit.get(context).pauseSending();
 
     });
   }

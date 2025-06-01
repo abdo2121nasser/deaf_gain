@@ -7,6 +7,7 @@ class DioHelper {
     dio = Dio(BaseOptions(
       baseUrl: 'http://127.0.0.1:5256/api/',
       // adb reverse tcp:5256 tcp:5256
+      // adb reverse tcp:8000 tcp:8000
       //dotnet run --urls "http://0.0.0.0:5256"
       receiveDataWhenStatusError: true,
 

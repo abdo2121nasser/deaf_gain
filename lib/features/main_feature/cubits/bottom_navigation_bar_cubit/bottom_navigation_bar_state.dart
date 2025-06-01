@@ -18,6 +18,6 @@ final class HomeState extends BottomNavigationBarState {
   const TranslateState({required super.body});
 }
 
-final class HistoryState extends BottomNavigationBarState {
-  const HistoryState({required super.body});
-}
+// final class HistoryState extends BottomNavigationBarState {
+//   const HistoryState({required super.body});
+// }

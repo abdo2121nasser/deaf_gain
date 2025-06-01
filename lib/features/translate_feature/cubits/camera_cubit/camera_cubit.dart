@@ -24,7 +24,7 @@ class CameraCubit extends Cubit<CameraState> {
 
       cameraController = CameraController(
         cameraDescription,
-        ResolutionPreset.medium,
+        ResolutionPreset.low,
         enableAudio: false,
       );
 
