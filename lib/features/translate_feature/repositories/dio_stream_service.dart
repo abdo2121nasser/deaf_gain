@@ -11,7 +11,7 @@ import '../models/prediction_entity.dart';
 
 class DioStreamService {
   final Dio _dio = Dio(BaseOptions(
-    baseUrl: 'http://127.0.0.1:5000/predict',
+    baseUrl: 'http://127.0.0.1:8000/predict',
     // connectTimeout: const Duration(seconds: 10),  // ✅ Increase timeout
     // receiveTimeout: const Duration(seconds: 10),
     headers: {'Content-Type': 'multipart/form-data'},
@@ -75,7 +75,9 @@ class DioStreamService {
         final PredictionModel predictionModel =
             PredictionModel.fromJson(response.data);
         final display = "${predictionModel.arabic} ";
-        _responseController.add(display);
+        if(containsNoEnglishLetters(display)) {
+          _responseController.add(display);
+        }
       }
     } on DioException catch (e) {
       final failure = ServerFailure.fromServer(e);
@@ -151,9 +153,9 @@ class DioStreamService {
   }
 }
 
-// bool containsNoEnglishLetters(String input) {
-//   // Regex to check for any English letters
-//   final englishLetterRegExp = RegExp(r'[a-zA-Z]');
-//   // Returns false if any English letter found, true otherwise
-//   return !englishLetterRegExp.hasMatch(input);
-// }
+bool containsNoEnglishLetters(String input) {
+  // Regex to check for any English letters
+  final englishLetterRegExp = RegExp(r'[a-zA-Z]');
+  // Returns false if any English letter found, true otherwise
+  return !englishLetterRegExp.hasMatch(input);
+}
